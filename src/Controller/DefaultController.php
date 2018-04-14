@@ -16,4 +16,17 @@ class DefaultController extends Controller
     {
         return new Response($twig->render('default/index.html.twig'));
     }
+
+    /**
+     * @Route("/admin", name="admin")
+     * @param Environment $twig
+     * @return Response
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
+    public function admin(Environment $twig)
+    {
+        return new Response($twig->render('admin/index.html.twig'));
+    }
 }
