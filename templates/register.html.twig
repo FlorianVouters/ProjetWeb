@@ -1,18 +1,16 @@
 {# templates/register.html.twig #}
-
 {% extends 'base.html.twig' %}
 
 {% block body %}
 
-
 {{ form_start(form) }}
-    {{ form_row(form.firstname, {'label': 'Prénom'}) }}
-    {{ form_row(form.surname, {'label': 'Nom'}) }}
-    {{ form_row(form.email, {'label': 'Email'}) }}
-    {{ form_row(form.password.first, {'label': 'Mot de passe'}) }}
-    {{ form_row(form.password.second, {'label': 'Répétez votre mot de passe'}) }}
+    {{ form_row(form.fullName) }}
+    {{ form_row(form.username) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.password.first) }}
+    {{ form_row(form.password.second) }}
 
-<button type="submit">S'inscrire !</button>
+    <button type="submit">S'inscrire !</button>
 {{ form_end(form) }}
 
 {% endblock %}
