@@ -2,7 +2,8 @@
 
 namespace App\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -13,7 +14,11 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return $this->render('index.html.twig');
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if (is_object($user) && $user->getToken()) {
+            return $this->render('activate/activate.html.twig');
+        }
+            return $this->render('index.html.twig');
     }
 
     /**
@@ -22,6 +27,14 @@ class IndexController extends Controller
     public function admin()
     {
         return $this->render('Admin/index.html.twig');
+    }
+
+    /**
+     * @Route("/activate", name="activate")
+     */
+    public function activate()
+    {
+        return $this->render('activate/activate.html.twig');
     }
 
 }

@@ -35,15 +35,18 @@ class RegistrationNotifySubscriber implements EventSubscriberInterface
         $user = $event->getSubject();
 
         $subject = "Bienvenue";
-        $body = "Bienvenue mon ami.e sur ce tutorial";
+        $body = "Bienvenue sur le site du BDE, pour accéder au site, il faut que tu actives ton compte en cliquant sur cette URL \n
+                127.0.0.1/activation?id=".$user->getId()."&token=".$user->getToken()."\n
+                On se retrouve bientôt ! :D";
 
         $message = (new \Swift_Message())
             ->setSubject($subject)
             ->setTo($user->getEmail())
-            ->setFrom($this->sender)
+            ->setFrom('test@localhost')
             ->setBody($body, 'text/html')
         ;
 
         $this->mailer->send($message);
+
     }
 }

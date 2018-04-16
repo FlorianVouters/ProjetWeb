@@ -29,7 +29,6 @@ class AppFixtures extends Fixture
             $manager->persist($user);
             $this->addReference($username, $user);
         }
-
         $manager->flush();
     }
 

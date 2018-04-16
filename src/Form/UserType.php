@@ -1,5 +1,5 @@
 <?php
-
+// /src/Form/UserType.php
 namespace App\Form;
 
 use App\Entity\User;
@@ -17,8 +17,8 @@ class UserType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class)
+            ->add('email', EmailType::class)            
             ->add('surname', TextType::class)
-            ->add('email', EmailType::class)
             ->add('password', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'first_options'  => array('label' => 'Password'),

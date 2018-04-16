@@ -4,8 +4,8 @@
 {% block body %}
 
 {{ form_start(form) }}
-    {{ form_row(form.fullName) }}
-    {{ form_row(form.username) }}
+    {{ form_row(form.firstname, {label: "Prénom"}) }}
+    {{ form_row(form.surname) }}
     {{ form_row(form.email) }}
     {{ form_row(form.password.first) }}
     {{ form_row(form.password.second) }}
