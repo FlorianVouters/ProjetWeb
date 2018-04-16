@@ -105,4 +105,18 @@ class Produit
 
         return $this;
     }
+
+    public function deleteProduct(){
+        $produit = $this->id;
+        remove($produit);
+        flush();
+    }
+
+    public function productSold(){
+        $this->nombreVente = $this->nombreVente+1;
+    }
+
 }
+
+
+

@@ -37,4 +37,11 @@ class Rapport
 
         return $this;
     }
+
+    public function addReport(){        //TODO: gérér cléf étrangère primaire
+        $rapport = new Rapport();
+
+        $rapport = $this->setRaison();
+    //    $rapport = $this->setidCompte();
+    }
 }

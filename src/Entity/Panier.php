@@ -54,4 +54,13 @@ class Panier
 
         return $this;
     }
+
+    public function basketSold(){
+        $this->etatCommande=TRUE;
+    }
+    public function deleteBasket(){                                 //TODO : Vérifier le code ici
+        $panier = $this->id;
+        remove($panier);
+        flush();
+    }
 }

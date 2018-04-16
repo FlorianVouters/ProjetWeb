@@ -26,6 +26,9 @@ class TokenApi
      */
     private $permission;
 
+
+
+
     public function getId()
     {
         return $this->id;
@@ -53,5 +56,12 @@ class TokenApi
         $this->permission = $permission;
 
         return $this;
+    }
+
+    public function addTokenAPI($string, $idCompte){                //TODO: résoudre le problème de idcompte
+        $tokenApi = new TokenApi();
+        $tokenApi = $this->setToken($string);
+        $tokenApi = $this->setPermission(['Basic']);
+        flush();
     }
 }

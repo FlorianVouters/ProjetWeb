@@ -139,4 +139,39 @@ class Compte
 
         return $this;
     }
+
+
+
+    //registerTo($idActivity);
+    //voteTo($idActivity, $vote);
+    //getAllRegistrationsToActivity();
+    public function getBasket(){                                //TODO: flush()
+        $query = Doctrine_Query::create()
+        ->select( 'Panier.nombreArticle, Panier.idProduit' )
+        ->from( 'Panier' )
+        ->where( 'id =', $this->id )
+        ->flush();
+
+    }
+
+    public function addUser($nom, $prenom, $adresseMail, $password){
+        $compte = new Compte();
+
+        $compte = setNom($nom);
+        $compte = setPrenom($prenom);
+        $compte = setAdresseMail($adresseMail);
+        $compte = setPassword($password);
+        $compte.save();
+    }
+
+    public function getUserByID($id){
+        $query = Doctrine_Query::create()
+        ->select('Compte.nom, Compte.prenom, Compte.adresseMail, Compte.password, Compte.token')
+        ->from('Compte')
+        ->where('id =', $this->id)
+        ->flush();
+    }
+
+
 }
+
