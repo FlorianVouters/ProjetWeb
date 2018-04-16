@@ -2,6 +2,7 @@
 // src/Controller/RegistrationController.php
 namespace App\Controller;
 
+use App\Entity\ManagerEntity;
 use App\Form\UserType;
 use App\Entity\User;
 use App\Events;
@@ -13,7 +14,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\EventDispatcher\GenericEvent;
-use Symfony\Component\Validator\Constraints\Regex;
 
 class RegistrationController extends Controller
 {
@@ -24,6 +24,7 @@ class RegistrationController extends Controller
     {
     
         $user = new User();
+        var_dump(UserType::class);
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
@@ -69,26 +70,44 @@ class RegistrationController extends Controller
      * @param $id
      * @param $token
      * @param EventDispatcher $eventDispatcher
+     * @return redirection
      */
-    public function activation(Request $request, EventDispatcher $eventDispatcher)
+    public function activation(Request $request, EventDispatcherInterface $eventDispatcher)
     {
-        $id = $request->attributes->get('id');
-        $token = $request->attributes->get('token');
-        var_dump($id." allo ".$token);
-        die();
+        $id = $request->query->get('id');
+        $token = $request->query->get('token');
+
         $session = new Session();
-        $user = $this->getUserByID($id);
+        $user = $this->getUser();
+
+        foreach ($session->getFlashBag()->get('success', array()) as $message) {
+            echo '<div class="flash-notice">'.$message.'</div>';
+        }
+        foreach ($session->getFlashBag()->get('error', array()) as $message) {
+            echo '<div class="flash-notice">'.$message.'</div>';
+        }
 
 
+
+        if($user->getTokenAt()) {
+            $session->getFlashBag()->add('success', 'Ton compte est déjà confirmé');
+            return $this->redirect('/');
+        }
         if($user->getToken() === $token) {
-            $session->set('success', 'Votre compte est bien activé !');
+            $session->getFlashBag()->add('success', 'Votre compte est bien activé !');
             $user->setToken(null);
-            $user->setTokenAt(date('Y-m-d H:i:s'));
+            $user->setTokenAt(new \DateTimeImmutable());
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+            return $this->redirect('/');
         } else {
-            $session->set('error', 'Votre compte n\'a pas pu être activé, merci de reprendre le lien dans votre boite-mail. Il vient d\'être renvoyer');
+            $session->getFlashBag()->add('error', 'Votre compte n\'a pas pu être activé, merci de reprendre le lien dans votre boite-mail. Il vient d\'être renvoyer');
             $event = new GenericEvent($user);
             $eventDispatcher->dispatch(Events::USER_REGISTERED, $event);
+            return $this->redirect('/');
         }
 
     }
+
 }

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <h1>Activity creation</h1>
+
+    {{ form_start(form) }}
+
+
+    <button type="submit">Envoyer !</button>
+    {{ form_end(form) }}
+
+    <ul class="record_actions">
+        <li>
+            <a href="{{ path('suggestion') }}">
+                Back to the list
+            </a>
+        </li>
+    </ul>
+
+
+{% endblock %}

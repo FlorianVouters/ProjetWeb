@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 //use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,9 +15,10 @@ class IndexController extends Controller
      */
     public function index()
     {
+        $session = new Session();
         $user = $this->get('security.token_storage')->getToken()->getUser();
         if (is_object($user) && $user->getToken()) {
-            return $this->render('activate/activate.html.twig');
+            return $this->redirect('/activate');
         }
             return $this->render('index.html.twig');
     }
@@ -34,6 +36,20 @@ class IndexController extends Controller
      */
     public function activate()
     {
+        $session = new Session();
+
+        foreach ($session->getFlashBag()->get('success', array()) as $message) {
+            echo '<div class="flash-notice">'.$message.'</div>';
+        }
+        foreach ($session->getFlashBag()->get('error', array()) as $message) {
+            echo '<div class="flash-notice">'.$message.'</div>';
+        }
+
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+        if (is_object($user) && !$user->getToken()) {
+            return $this->redirect('/');
+        }
         return $this->render('activate/activate.html.twig');
     }
 
