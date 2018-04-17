@@ -129,9 +129,10 @@ class Produit
     }
 
     public function deleteProduct(){
+        $entityManager = $this->getDoctrine()->getManager();
         $produit = $this->id;
-        remove($produit);
-        flush();
+        $entityManager->remove($produit);
+        $entityManager->flush();
     }
 
     public function productSold(){

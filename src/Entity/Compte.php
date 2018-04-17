@@ -145,13 +145,20 @@ class Compte
 
     //registerTo($idActivity);
     //voteTo($idActivity, $vote);
-    //getAllRegistrationsToActivity();
-    public function getBasket(){                                //TODO: flush()
-        $query = Doctrine_Query::create()
-        ->select( 'Panier.nombreArticle, Panier.produit_id' )
-        ->from( 'Panier' )
-        ->where( 'id =', $this->id )
-        ->flush();
+    public function getAllRegistrationsToActivity(){
+
+        $repository = $this->getDoctrine()->getRepository(Inscrire::class);
+        $inscription = $repository->findby([
+            'compte_id' => $this->id,
+        ]);
+        return $inscription;
+    }
+    public function getBasket(){
+        $repository = $this->getDoctrine()->getRepository(Panier::class);
+        $panier = $repository->findOneBy([
+           'compte_id' => $this->id,
+        ]);
+        return $panier;
 
     }
 

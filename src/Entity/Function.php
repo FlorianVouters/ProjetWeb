@@ -7,121 +7,126 @@
  */
 
 function getUserByID($id){
-    $query = Doctrine_Query::create()
-        ->select( 'Compte.nom, Compte.prenom, Compte.adresseMail, Compte.password' )
-        ->from( 'Compte' )
-        ->where( 'Compte.id = ?', $id )
-        ->flush();
+
+
+    $repository = $this->getDoctrine()->getRepository(\App\Entity\Compte::class);
+    $compte = $repository->find($id);
+    return $compte;
+
 }
 function getUserByEmail($adresseMail){
-    $query = Doctrine_Query::create()
-        ->select( 'Compte.nom, Compte.prenom, Compte.adresseMail, Compte.password' )
-        ->from( 'Compte' )
-        ->where( 'Compte.adresseMail = ?', $adresseMail )
-        ->flush();
+    $repository = $this->getDoctrine()->getRepository(\App\Entity\Compte::class);
+    $compte = $repository->find($adresseMail);
+    return $compte;
 }
 
-function getAPIByToken($token){ //(toute la table, donc avec le champs ID, Token, Permission)
-    $query = Doctrine_Query::create()
-        ->select( 'TokenApi.id, TokenApi.token, TokenApi.permission' )
-        ->from( 'TokenApi' )
-        ->where( 'TokenApi.token = ?', $token )
-        ->flush();
+function getAPIByToken($token){
+
+    $repository = $this->getDoctrine()->getRepository(\App\Entity\TokenApi::class);
+    $api = $repository->find($token);
+    return $api;
 }
 
 function getActivityByID($id){
-    $query = Doctrine_Query::create()
-        ->select( 'Activite.id, Activite.nom, Activite.description, Activite.image, Activite.date, Activite.recurrence, Activite.prix, Activite.etatVisibilite, Activite.statut' )
-        ->from( 'Activite' )
-        ->where( 'Activite.id = ?', $id )
-        ->flush();
+
+    $repository = $this->getDoctrine()->getRepository(\App\Entity\Activite::class);
+    $activite = $repository->find($id);
+    return $activite;
 }
 function getActivityByVisibility($etatVisibilite){
-    $query = Doctrine_Query::create()
-        ->select( 'Activite.id, Activite.nom, Activite.description, Activite.image, Activite.date, Activite.recurrence, Activite.prix, Activite.etatVisibilite, Activite.statut' )
-        ->from( 'Activite' )
-        ->where( 'Activite.etatVisibilite = ?', $etatVisibilite )
-        ->flush();
+
+    $repository = $this->getDoctrine()->getRepository(\App\Entity\Activite::class);
+    $activite = $repository->find($etatVisibilite);
+    return $activite;
 }
 
 function addActivity($nom, $description, $image){
+    $entityManager = $this->getDoctrine()->getManager();
     $activity = new \App\Entity\Activite();
 
-    $activity = $this->nom= $nom;
-    $activity = $this->description = $description;
-    $activity = $this->image = $image;
-    $activity = $this->date = null;
-    $activity = $this->recurrence = null;
-    $activity = $this->prix = null;
-    $activity = $this->visibility = true;
-    $activity = $this->statut  = false;
-    flutch();
+    $activity->setNom($nom);
+    $activity->setDescription($description);
+    $activity->setImage($image);
+    $activity->setDate(null);
+    $activity->setRecurrence(null);
+    $activity->setPrix( null);
+    $activity->setEtatVisibilite( true);
+    $activity->setStatut( false);
+    $entityManager->persist($activity);
+    $entityManager->flutch();
 }
 function setActivity($nom, $description, $image, $date, $recurrence, $prix, $visibility, $statut){
+    $entityManager = $this->getDoctrine()->getManager();
     $activity = new \App\Entity\Activite();
 
-    $activity = $this->nom= $nom;
-    $activity = $this->description = $description;
-    $activity = $this->image = $image;
-    $activity = $this->date = $date;
-    $activity = $this->recurrence = $recurrence;
-    $activity = $this->prix = $prix;
-    $activity = $this->visibility = $visibility;
-    $activity = $this->statut  = $statut;
-    flutch();
+    $activity->setNom($nom);
+    $activity->setDescription($description);
+    $activity->setImage($image);
+    $activity->setDate($date);
+    $activity->setRecurrence($recurrence);
+    $activity->setPrix( $prix);
+    $activity->setEtatVisibilite( $visibility);
+    $activity->setStatut( $statut);
+    $entityManager->persist($activity);
+    $entityManager->flutch();
 }
 
 function getVoteByID($id){                       //TODO : Vérifier les clefs étrangères
-    $query = Doctrine_Query::create()
-        ->select( 'Vote.id, Vote.nom, Vote.compte_id, Vote.activite_id' )
-        ->from( 'Vote' )
-        ->where( 'Vote.id = ?', $id )
-        ->flush();
+
+    $repository = $this->getDoctrine()->getRepository(\App\Entity\Vote::class);
+    $vote = $repository->find($id);
+    return $vote ;
 }
 function getProduct($id){
-    $query = Doctrine_Query::create()
-        ->select( 'Vote.id, Vote.nom, Vote.compte_id, Vote.activite_id' )
-        ->from( 'Vote' )
-        ->where( 'Vote.id = ?', $id )
-        ->flush();
+
+    $repository = $this->getDoctrine()->getRepository(\App\Entity\Produit::class);
+    $produit = $repository->find($id);
+    return $produit ;
 }
 function addProduct($nom, $description, $prix, $categorie){ //Suppression de "$nombreVente" car non besoin
+
+    $entityManager = $this->getDoctrine()->getManager();
     $activity = new \App\Entity\Produit();
 
-    $activity = $this->nom= $nom;
-    $activity = $this->description = $description;
-    $activity = $this->prix = $prix;
-    $activity = $this->categorie = $categorie;
-    $activity = $this->nombreVente = 0;
-    flutch();
+    $activity->setNom($nom);
+    $activity->setDescription($description);
+    $activity->setPrix($prix);
+    $activity->setCategorie($categorie);
+    $activity->setNombreVente( 0);
+    $entityManager->persist($activity);
+    $entityManager->flutch();
 }
 function getAllCommentsByID($activite_id){
-    $query = Doctrine_Query::create()
-        ->select( 'Commentaire.id, Commentaire.nom, Commentaire.compte_id, Commentaire.activite_id' )
-        ->from( 'Commentaire' )
-        ->where( 'Commentaire.activite_id = ?', $activite_id )
-        ->flush();
+
+    $repository = $this->getDoctrine()->getRepository(\App\Entity\Commentaire::class);
+    $commentaire = $repository->find($activite_id);
+    return $commentaire;
+
 }
 function getReactionByCommentID($commentaire_id){
-    $query = Doctrine_Query::create()
-        ->select( 'Reagit.id, Reagit.compte_id, Reagit.activite_id, Reagit.commentaire_id, Reagit.typeVote' )
-        ->from( 'Reagit' )
-        ->where( 'Reagit.commentaire_id= ?', $commentaire_id)
-        ->flush();
+
+    $repository = $this->getDoctrine()->getRepository(\App\Entity\Reagit::class);
+    $reaction = $repository->find($commentaire_id);
+    return $reaction;
+
 }
 //addReactionToComment($id, $reaction);
 //addReactionToActivity($id, $reaction);
 //registerToActivity($iduser, $idactivity);
 //setProduct($id, $name, $description, $price, $category, $sells);
+
 function getVoteByIDActivity($activite_id){
-    $query = Doctrine_Query::create()
-        ->select( 'Vote.id, Vote.nom, Vote.compte_id, Vote.activite_id' )
-        ->from( 'Vote' )
-        ->where( 'Vote.activite_id = ?', $activite_id )
-        ->flush();
+
+    $repository = $this->getDoctrine()->getRepository(\App\Entity\Vote::class);
+    $vote = $repository->find($activite_id);
+    return $vote;
+
 }
 function getTokenbyToken($token){
 
+    $repository = $this->getDoctrine()->getRepository(\App\Entity\TokenApi::class);
+    $token = $repository->find($token);
+    return $token;
 }
 //addVoteToActivity($idActivity, $idUser, $reaction);
 //deleteVoteToActivity($idActivity, $idUser);

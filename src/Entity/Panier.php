@@ -78,11 +78,16 @@ class Panier
     }
 
     public function basketSold(){
-        $this->etatCommande=TRUE;
+        $entityManager = $this->getDoctrine()->getManager();            // TODO: A vérifier
+        $panier = $this->etatCommande=TRUE;
+        $entityManager->persist($panier);
+        $entityManager->flush();
+
     }
     public function deleteBasket(){                                 //TODO : Vérifier le code ici
+        $entityManager = $this->getDoctrine()->getManager();
         $panier = $this->id;
-        remove($panier);
-        flush();
+        $entityManager->remove($panier);
+        $entityManager->flush();
     }
 }

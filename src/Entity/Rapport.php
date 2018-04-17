@@ -105,10 +105,13 @@ class Rapport
         return $this;
     }
 
-    public function addReport($raison){        //TODO: gérér cléf étrangère primaire
+    public function addReport($raison, $compte_id){        //TODO: Vérifier le code
+        $entityManager = $this->getDoctrine()->getManager();
         $rapport = new Rapport();
 
-        $rapport = $this->setRaison($raison);
-    //    $rapport = $this->setCompteId();
+        $rapport->setRaison($raison);
+        $rapport->setCompteId($compte_id);
+        $entityManager->persist($rapport);
+        $entityManager->flush();
     }
 }
