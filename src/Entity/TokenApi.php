@@ -27,7 +27,27 @@ class TokenApi
     private $permission;
 
 
+    /**
+     * @OneToOne(targetEntity="Compte")
+     * @JoinColumn(name="$compte_id", referencedColumnName="id")
+     */
+    private $compte_id;
 
+    /**
+     * @return mixed
+     */
+    public function getCompteId()
+    {
+        return $this->compte_id;
+    }
+
+    /**
+     * @param mixed $compte_id
+     */
+    public function setCompteId($compte_id): void
+    {
+        $this->compte_id = $compte_id;
+    }
 
     public function getId()
     {
@@ -58,7 +78,7 @@ class TokenApi
         return $this;
     }
 
-    public function addTokenAPI($string, $idCompte){                //TODO: résoudre le problème de idcompte
+    public function addTokenAPI($string, $compte_id){                //TODO: résoudre le problème de $compte_id
         $tokenApi = new TokenApi();
         $tokenApi = $this->setToken($string);
         $tokenApi = $this->setPermission(['Basic']);

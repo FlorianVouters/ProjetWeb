@@ -41,6 +41,28 @@ class Produit
      */
     private $nombreVente;
 
+    /**
+     * @OneToOne(targetEntity="Panier")
+     * @JoinColumn(name="panier_id", referencedColumnName="id")
+     */
+    private $panier_id;
+
+    /**
+     * @return mixed
+     */
+    public function getPanierId()
+    {
+        return $this->panier_id;
+    }
+
+    /**
+     * @param mixed $panier_id
+     */
+    public function setPanierId($panier_id): void
+    {
+        $this->panier_id = $panier_id;
+    }
+
     public function getId()
     {
         return $this->id;

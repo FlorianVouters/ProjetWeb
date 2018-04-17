@@ -27,9 +27,10 @@ class Activite
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\OneToOne(targetEntity="Media", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $urlImage;
+    private $image;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
@@ -85,14 +86,14 @@ class Activite
         return $this;
     }
 
-    public function getUrlImage(): ?string
+    public function getImage(): ?string
     {
-        return $this->urlImage;
+        return $this->image;
     }
 
-    public function setUrlImage(?string $urlImage): self
+    public function setImage(Media $image): self
     {
-        $this->urlImage = $urlImage;
+        $this->image = $image;
 
         return $this;
     }

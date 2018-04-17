@@ -31,25 +31,25 @@ function getAPIByToken($token){ //(toute la table, donc avec le champs ID, Token
 
 function getActivityByID($id){
     $query = Doctrine_Query::create()
-        ->select( 'Activite.id, Activite.nom, Activite.description, Activite.urlImage, Activite.date, Activite.recurrence, Activite.prix, Activite.etatVisibilite, Activite.statut' )
+        ->select( 'Activite.id, Activite.nom, Activite.description, Activite.image, Activite.date, Activite.recurrence, Activite.prix, Activite.etatVisibilite, Activite.statut' )
         ->from( 'Activite' )
         ->where( 'Activite.id = ?', $id )
         ->flush();
 }
 function getActivityByVisibility($etatVisibilite){
     $query = Doctrine_Query::create()
-        ->select( 'Activite.id, Activite.nom, Activite.description, Activite.urlImage, Activite.date, Activite.recurrence, Activite.prix, Activite.etatVisibilite, Activite.statut' )
+        ->select( 'Activite.id, Activite.nom, Activite.description, Activite.image, Activite.date, Activite.recurrence, Activite.prix, Activite.etatVisibilite, Activite.statut' )
         ->from( 'Activite' )
         ->where( 'Activite.etatVisibilite = ?', $etatVisibilite )
         ->flush();
 }
 
-function addActivity($nom, $description, $urlImage){
+function addActivity($nom, $description, $image){
     $activity = new \App\Entity\Activite();
 
     $activity = $this->nom= $nom;
     $activity = $this->description = $description;
-    $activity = $this->urlImage = $urlImage;
+    $activity = $this->image = $image;
     $activity = $this->date = null;
     $activity = $this->recurrence = null;
     $activity = $this->prix = null;
@@ -57,12 +57,12 @@ function addActivity($nom, $description, $urlImage){
     $activity = $this->statut  = false;
     flutch();
 }
-function setActivity($nom, $description, $urlImage, $date, $recurrence, $prix, $visibility, $statut){
+function setActivity($nom, $description, $image, $date, $recurrence, $prix, $visibility, $statut){
     $activity = new \App\Entity\Activite();
 
     $activity = $this->nom= $nom;
     $activity = $this->description = $description;
-    $activity = $this->urlImage = $urlImage;
+    $activity = $this->image = $image;
     $activity = $this->date = $date;
     $activity = $this->recurrence = $recurrence;
     $activity = $this->prix = $prix;
@@ -73,14 +73,14 @@ function setActivity($nom, $description, $urlImage, $date, $recurrence, $prix, $
 
 function getVoteByID($id){                       //TODO : Vérifier les clefs étrangères
     $query = Doctrine_Query::create()
-        ->select( 'Vote.id, Vote.nom, Vote.idCompte, Vote.idActivite' )
+        ->select( 'Vote.id, Vote.nom, Vote.compte_id, Vote.activite_id' )
         ->from( 'Vote' )
         ->where( 'Vote.id = ?', $id )
         ->flush();
 }
 function getProduct($id){
     $query = Doctrine_Query::create()
-        ->select( 'Vote.id, Vote.nom, Vote.idCompte, Vote.idActivite' )
+        ->select( 'Vote.id, Vote.nom, Vote.compte_id, Vote.activite_id' )
         ->from( 'Vote' )
         ->where( 'Vote.id = ?', $id )
         ->flush();
@@ -95,30 +95,33 @@ function addProduct($nom, $description, $prix, $categorie){ //Suppression de "$n
     $activity = $this->nombreVente = 0;
     flutch();
 }
-function getAllCommentsByID($idActivity){
+function getAllCommentsByID($activite_id){
     $query = Doctrine_Query::create()
-        ->select( 'Commentaire.id, Commentaire.nom, Commentaire.idCompte, Commentaire.idActivite' )
+        ->select( 'Commentaire.id, Commentaire.nom, Commentaire.compte_id, Commentaire.activite_id' )
         ->from( 'Commentaire' )
-        ->where( 'Commentaire.idActivite = ?', $idActivity )
+        ->where( 'Commentaire.activite_id = ?', $activite_id )
         ->flush();
 }
-function getReactionByCommentID($idComment){
+function getReactionByCommentID($commentaire_id){
     $query = Doctrine_Query::create()
-        ->select( 'Reagit.id, Reagit.idCompte, Reagit.idActivite, Reagit.idCommentaire, Reagit.typeVote' )
+        ->select( 'Reagit.id, Reagit.compte_id, Reagit.activite_id, Reagit.commentaire_id, Reagit.typeVote' )
         ->from( 'Reagit' )
-        ->where( 'Reagit.idCompte= ?', $idComment )
+        ->where( 'Reagit.commentaire_id= ?', $commentaire_id)
         ->flush();
 }
 //addReactionToComment($id, $reaction);
 //addReactionToActivity($id, $reaction);
 //registerToActivity($iduser, $idactivity);
 //setProduct($id, $name, $description, $price, $category, $sells);
-function getVoteByIDActivity($idactivity){
+function getVoteByIDActivity($activite_id){
     $query = Doctrine_Query::create()
-        ->select( 'Vote.id, Vote.nom, Vote.idCompte, Vote.idActivite' )
+        ->select( 'Vote.id, Vote.nom, Vote.compte_id, Vote.activite_id' )
         ->from( 'Vote' )
-        ->where( 'Vote.idActivite = ?', $idactivity )
+        ->where( 'Vote.activite_id = ?', $activite_id )
         ->flush();
+}
+function getTokenbyToken($token){
+
 }
 //addVoteToActivity($idActivity, $idUser, $reaction);
 //deleteVoteToActivity($idActivity, $idUser);
