@@ -67,10 +67,10 @@ class RegistrationController extends Controller
 
     /**
      * @Route("/activation", name="activation")
-     * @param $id
-     * @param $token
-     * @param EventDispatcher $eventDispatcher
-     * @return redirection
+     * @param Request $request
+     * @param EventDispatcherInterface $eventDispatcher
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     * @throws \Exception
      */
     public function activation(Request $request, EventDispatcherInterface $eventDispatcher)
     {
