@@ -2,11 +2,69 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {% block stylesheets %}
+        <link href="{{ asset("assets/css/sign.css") }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset("C:\Users\Robin\Documents\GitHub\ProjetWeb\assets\vendor\bootstrap-4.1.0\dist\css\bootstrap.css") }}" rel="stylesheet" type="text/css" />
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <title>Sign In / Up</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.css" rel="stylesheet" type="text/css">
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+
+    <!-- Info & Networks -->
+    <header>
+        <nav class="navbar navbar-expand sticky-top navbar-dark bg-brown">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse offset-md-2">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: white">Inscription</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: white">Connexion</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0 offset-md-3">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: white"><img src="{{ asset('img/facebook.png') }}" width="30" height="30"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: white"><img src="{{ asset('img/twitter.png') }}" width="30" height="30"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: white"><img src="img/youtube.png" width="30" height="30"></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" style="color: white"><img src="img/at.png" width="30" height="30"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+
+    <img src="../web/img/twitter.png" width="32" height="32">
+
+    {% block body %}
+
+    {% endblock %}
+    {% block javascripts %}
+
+        {#<script src="{{ url("https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.16/vue.js") }}"></script>   <!-- Version chargée sur le net -->#}
+        {#<script src="{{ path("https://code.jquery.com/jquery-3.3.1.slim.min.js") }}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>#}
+        {#<script src="{{ path("https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js") }}" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>#}
+        {#<script src="{{ path("https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js") }}" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>#}
+
+    {% endblock %}
+
+
+
     </body>
 </html>
