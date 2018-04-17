@@ -34,7 +34,9 @@ class SuggestionController extends Controller
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
-
+//            if (!$suggestion->getImage()->getName()) {
+//                $suggestion->setImage()
+//            }
             $em = $this->getDoctrine()->getManager();
             $em->persist($suggestion);
             $em->flush();

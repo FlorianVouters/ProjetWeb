@@ -98,20 +98,26 @@ class Media extends UploadedFile
         return $this->id;
     }
 
+
     /**
-     * @return mixed
+     * @param string $name
+     * @return string
      */
-    public function getName()
+    public function getName($name)
     {
-        return $this->name;
+        return parent::getName($name);
     }
+
 
     /**
      * @param mixed $name
+     * @return $this
      */
-    public function setName($name): void
+    public function setName($name): self
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
