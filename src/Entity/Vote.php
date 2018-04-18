@@ -22,7 +22,7 @@ class Vote
     private $vote;
 
     /**
-     * @@ORM\anyToOne(targetEntity="User")
+     * @@ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="$compte_id", referencedColumnName="id")
      */
     private $user_id;

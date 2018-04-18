@@ -27,13 +27,13 @@ class Basket
     private $orderState;
 
     /**
-     * @ORM\OneToOne(targetEntity="Compte")
+     * @ORM\OneToOne(targetEntity="User")
      * @ORM\JoinColumn(name="compte_id", referencedColumnName="id")
      */
     private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="basket")
      * @ORM\JoinColumn(name="$produit_id", referencedColumnName="id")
      */
     private $product_id;
