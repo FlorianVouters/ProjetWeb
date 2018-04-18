@@ -22,15 +22,15 @@ class Vote
     private $vote;
 
     /**
-     * @ManyToOne(targetEntity="Compte")
-     * @JoinColumn(name="$compte_id", referencedColumnName="id")
+     * @@ORM\anyToOne(targetEntity="Compte")
+     * @ORM\JoinColumn(name="$compte_id", referencedColumnName="id")
      */
     private $compte_id;
 
 
     /**
-     * @OneToOne(targetEntity="Activite")
-     * @JoinColumn(name="activite_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Activite")
+     * @ORM\JoinColumn(name="activite_id", referencedColumnName="id")
      */
     private $activite_id;
 

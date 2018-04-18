@@ -1,50 +1,65 @@
 <?php
-
 namespace App\Entity;
-
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\HttpFoundation\File\File;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\validator\Constraints as Assert;
 
 /**
+ * Media
+ *
+ * @ORM\Table("Media")
  * @ORM\Entity(repositoryClass="App\Repository\MediaRepository")
  * @ORM\HasLifecycleCallbacks
  */
-class Media extends UploadedFile
+class Media
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
-     * @ORM\Column(type="integer")
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\COlumn(name="updated_at",type="datetime", nullable=true)
+     */
+    private $updateAt;
 
     /**
-     * @ORM\Column(type="string", length=255)
-     * @Assert\NotBlank
+     * @ORM\PostLoad()
      */
-    private $nom;
+    public function postLoad()
+    {
+        $this->updateAt = new \DateTime();
+    }
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string",length=255, nullable=true)
      */
-    private $path;
+    public $name;
 
     /**
-     * @
+     * @ORM\Column(type="string",length=255, nullable=true)
      */
+    public $path;
+
     public $file;
 
-
-    public function getUploadRootKit()
+    public function getUploadRootDir()
     {
-        return _dir_.'/../../web/uploads';
+        return __dir__.'../../../web/uploads';
     }
 
     public function getAbsolutePath()
     {
-        return null === $this->path ? null : $this->getUploadRootKit().'/'.$this->path;
+        return null === $this->path ? null : $this->getUploadRootDir().'/'.$this->path;
+    }
+
+    public function getAssetPath()
+    {
+        return 'uploads/'.$this->path;
     }
 
     /**
@@ -55,10 +70,10 @@ class Media extends UploadedFile
     {
         $this->tempFile = $this->getAbsolutePath();
         $this->oldFile = $this->getPath();
+        $this->updateAt = new \DateTime();
 
-        if(null !== $this->file) {
-            $this->path = shal(uniqid(mt_rand(),true)).'.'.$this->file->guessExtension();
-        }
+        if (null !== $this->file)
+            $this->path = sha1(uniqid(mt_rand(),true)).'.'.$this->file->guessExtension();
     }
 
     /**
@@ -67,11 +82,11 @@ class Media extends UploadedFile
      */
     public function upload()
     {
-        if(null !== $this->file) {
-            $this->file->move($this->getUploadRootKit(), $this->path);
+        if (null !== $this->file) {
+            $this->file->move($this->getUploadRootDir(),$this->path);
             unset($this->file);
 
-            if($this->oldFile != null) unlink($this->tempfile);
+            if ($this->oldFile != null) unlink($this->tempFile);
         }
     }
 
@@ -81,7 +96,6 @@ class Media extends UploadedFile
     public function preRemoveUpload()
     {
         $this->tempFile = $this->getAbsolutePath();
-
     }
 
     /**
@@ -89,48 +103,40 @@ class Media extends UploadedFile
      */
     public function removeUpload()
     {
-        if(file_exists($this->tempFile)) unlink($this->tempFile);
+        if (file_exists($this->tempFile)) unlink($this->tempFile);
     }
-
-
+    /**
+     * Get id
+     *
+     * @return integer
+     */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function nom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * @param mixed $nom
-     */
-    public function setnom($nom): void
-    {
-        $this->nom = $nom;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getPath()
     {
         return $this->path;
     }
 
-    /**
-     * @param mixed $path
-     */
-    public function setPath($path): void
+    public function getName()
     {
-        $this->path = $path;
+        var_dump($this->name);
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void
+    {
+        $this->name = $name;
     }
 
 
-
-
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }

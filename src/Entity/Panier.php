@@ -27,14 +27,14 @@ class Panier
     private $etatCommande;
 
     /**
-     * @OneToOne(targetEntity="Compte")
-     * @JoinColumn(name="compte_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Compte")
+     * @ORM\JoinColumn(name="compte_id", referencedColumnName="id")
      */
     private $compte_id;
 
     /**
-     * @ManyToOne(targetEntity="Produit")
-     * @JoinColumn(name="$produit_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\JoinColumn(name="$produit_id", referencedColumnName="id")
      */
     private $produit_id;
 

@@ -50,7 +50,7 @@ class ActiviteRepository extends ServiceEntityRepository
 
     public function getActivityByID($id){
 
-        $repository = $this->getDoctrine()->getRepository(\App\Entity\Activite::class);
+        $repository = $this->getRepository(\App\Entity\Activite::class);
         $activite = $repository->find($id);
         return $activite;
     }

@@ -31,15 +31,57 @@ class Produit
      */
     private $prix;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $categorie;
 
     /**
      * @ORM\Column(type="integer")
      */
     private $nombreVente;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Media", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $image;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\JoinColumn(name="$categorie_id", referencedColumnName="id")
+     */
+    private $categorie_id;
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCategorieId()
+    {
+        return $this->categorie_id;
+    }
+
+    /**
+     * @param mixed $categorie_id
+     */
+    public function setCategorieId($categorie_id): void
+    {
+        $this->categorie_id = $categorie_id;
+    }
 
 
     public function getId()
@@ -79,18 +121,6 @@ class Produit
     public function setPrix(int $prix): self
     {
         $this->prix = $prix;
-
-        return $this;
-    }
-
-    public function getCategorie(): ?string
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(string $categorie): self
-    {
-        $this->categorie = $categorie;
 
         return $this;
     }

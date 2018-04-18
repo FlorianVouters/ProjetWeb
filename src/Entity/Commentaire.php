@@ -22,14 +22,14 @@ class Commentaire
     private $description;
 
     /**
-     * @ManyToOne(targetEntity="Compte")
-     * @JoinColumn(name="compte_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Compte")
+     * @ORM\JoinColumn(name="compte_id", referencedColumnName="id")
      */
     private $compte_id;
 
     /**
-     * @ManyToOne(targetEntity="Activite")
-     * @JoinColumn(name="activite_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Activite")
+     * @ORM\JoinColumn(name="activite_id", referencedColumnName="id")
      */
     private $activite_id;
 

@@ -28,8 +28,8 @@ class TokenApi
 
 
     /**
-     * @OneToOne(targetEntity="Compte")
-     * @JoinColumn(name="$compte_id", referencedColumnName="id")
+     * @ORM\OneToOne(targetEntity="Compte")
+     * @ORM\JoinColumn(name="$compte_id", referencedColumnName="id")
      */
     private $compte_id;
 
