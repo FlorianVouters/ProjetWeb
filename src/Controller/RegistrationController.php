@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\ManagerEntity;
-use App\Form\UserType;
+use App\Form\RegistrationUserType;
 use App\Entity\User;
 use App\Events;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,7 +25,7 @@ class RegistrationController extends Controller
     {
     
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+        $form = $this->createForm(RegistrationUserType::class, $user);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
@@ -79,6 +79,7 @@ class RegistrationController extends Controller
 
         $session = new Session();
         $user = $this->getUser();
+        if(!$user) throw $this->createNotFoundException('Not Connected');
 
         foreach ($session->getFlashBag()->get('success', array()) as $message) {
             echo '<div class="flash-notice">'.$message.'</div>';
