@@ -47,4 +47,15 @@ class MediaRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function findByID($id): ?array
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.id = :id')
+            ->setParameter('id', $id)
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
 }
