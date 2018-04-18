@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
- * @Route("/product")
+ * @Route("/admin/product")
  */
 class ProductController extends Controller
 {
@@ -43,7 +43,7 @@ class ProductController extends Controller
             return $this->redirectToRoute('product_index');
         }
 
-        return $this->render('product/new.html.twig', [
+        return $this->render('admin/product/new.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
         ]);
@@ -54,7 +54,7 @@ class ProductController extends Controller
      */
     public function show(Product $product): Response
     {
-        return $this->render('product/show.html.twig', ['product' => $product]);
+        return $this->render('admin/product/show.html.twig', ['product' => $product]);
     }
 
     /**
@@ -71,7 +71,7 @@ class ProductController extends Controller
             return $this->redirectToRoute('product_edit', ['id' => $product->getId()]);
         }
 
-        return $this->render('product/edit.html.twig', [
+        return $this->render('admin/product/edit.html.twig', [
             'product' => $product,
             'form' => $form->createView(),
         ]);
@@ -88,6 +88,6 @@ class ProductController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('product_index');
+        return $this->redirectToRoute('admin/product_index');
     }
 }
