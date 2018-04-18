@@ -122,7 +122,6 @@ class Media
 
     public function getName()
     {
-        var_dump($this->name);
         return $this->name;
     }
 
