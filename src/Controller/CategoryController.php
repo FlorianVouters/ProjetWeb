@@ -7,10 +7,10 @@
  */
 
 namespace App\Controller;
-use App\Entity\Categorie;
+use App\Entity\Category;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class CategorieController extends Controller
+class CategoryController extends Controller
 {
 
 }

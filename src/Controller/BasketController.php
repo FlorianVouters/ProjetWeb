@@ -7,10 +7,10 @@
  */
 
 namespace App\Controller;
-use App\Entity\Panier;
+use App\Entity\Basket;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class PanierController extends Controller
+class BasketController extends Controller
 {
 
 }

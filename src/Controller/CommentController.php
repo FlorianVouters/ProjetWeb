@@ -7,14 +7,14 @@
  */
 
 namespace App\Controller;
-use App\Entity\Commentaire;
+use App\Entity\Comment;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class CommentaireController extends Controller
+class CommentController extends Controller
 {
     public function getAllCommentsByID($activite_id){
 
-        $repository = $this->getDoctrine()->getRepository(Commentaire::class);
+        $repository = $this->getDoctrine()->getRepository(Comment::class);
         $commentaire = $repository->findBy([
             'activite_id' => $activite_id
         ]);

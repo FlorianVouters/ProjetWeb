@@ -7,14 +7,14 @@
  */
 
 namespace App\Controller;
-use App\Entity\Reagit;
+use App\Entity\React;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ReagitController extends Controller
+class ReactController extends Controller
 {
     public function getReactionByCommentID($commentaire_id){
 
-        $repository = $this->getDoctrine()->getRepository(Reagit::class);
+        $repository = $this->getDoctrine()->getRepository(React::class);
         $reaction = $repository->findOneBy([
             'commentaire_id' => $commentaire_id
         ]);
@@ -23,7 +23,7 @@ class ReagitController extends Controller
     }
     public function addReactionToComment($commentaire_id, $reaction){
         $entityManager = $this->getDoctrine()->getManager();
-        $reagit = new Reagit();
+        $reagit = new React();
 
         $reagit->setCommentaireId($commentaire_id);
         $reagit->setTypeVote($reaction);
@@ -33,7 +33,7 @@ class ReagitController extends Controller
     }
     public function addReactionToActivity($activite_id, $reaction){
         $entityManager = $this->getDoctrine()->getManager();
-        $reagit = new Reagit();
+        $reagit = new React();
 
         $reagit->setActiviteId($activite_id);
         $reagit->setTypeVote($reaction);

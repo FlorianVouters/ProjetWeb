@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CategorieRepository")
  */
-class Categorie
+class Category
 {
     /**
      * @ORM\Id
@@ -38,7 +38,7 @@ class Categorie
      * Set nom
      *
      * @param string $name
-     * @return Categorie
+     * @return Category
      */
     public function setName($name)
     {

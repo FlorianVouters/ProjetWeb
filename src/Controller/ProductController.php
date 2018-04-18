@@ -7,14 +7,14 @@
  */
 
 namespace App\Controller;
-use App\Entity\Produit;
+use App\Entity\Product;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ProduitController extends Controller
+class ProductController extends Controller
 {
     public function setProduct($nom, $description, $prix, $categorie){
         $entityManager = $this->getDoctrine()->getManager();
-        $produit = new Produit();
+        $produit = new Product();
 
         $produit->setNom($nom);
         $produit->setDescription($description);
@@ -28,7 +28,7 @@ class ProduitController extends Controller
 
     public function getProduct($id){
 
-        $repository = $this->getDoctrine()->getRepository(Produit::class);
+        $repository = $this->getDoctrine()->getRepository(Product::class);
         $produit = $repository->find($id);
         return $produit ;
     }
@@ -36,7 +36,7 @@ class ProduitController extends Controller
     public function addProduct($nom, $description, $prix, $categorie){ //Suppression de "$nombreVente" car non besoin
 
         $entityManager = $this->getDoctrine()->getManager();
-        $activity = new Produit();
+        $activity = new Product();
 
         $activity->setNom($nom);
         $activity->setDescription($description);

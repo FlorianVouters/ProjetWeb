@@ -2,26 +2,26 @@
 
 namespace App\Repository;
 
-use App\Entity\Inscrire;
+use App\Entity\Registration;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * @method Inscrire|null find($id, $lockMode = null, $lockVersion = null)
- * @method Inscrire|null findOneBy(array $criteria, array $orderBy = null)
- * @method Inscrire[]    findAll()
- * @method Inscrire[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Registration|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Registration|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Registration[]    findAll()
+ * @method Registration[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class InscrireRepository extends ServiceEntityRepository
+class RegistrationRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Inscrire::class);
+        parent::__construct($registry, Registration::class);
     }
 
 //    /**
-//     * @return Inscrire[] Returns an array of Inscrire objects
+//     * @return Registration[] Returns an array of Registration objects
 //     */
     /*
     public function findByExampleField($value)
@@ -38,7 +38,7 @@ class InscrireRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Inscrire
+    public function findOneBySomeField($value): ?Registration
     {
         return $this->createQueryBuilder('i')
             ->andWhere('i.exampleField = :val')

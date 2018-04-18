@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\InscrireRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\RapportRepository")
  */
-class Inscrire
+class Report
 {
     /**
      * @ORM\Id()
@@ -17,15 +17,22 @@ class Inscrire
     private $id;
 
     /**
-     * @ORM\Column(type="boolean", nullable=true)
+     * @ORM\Column(type="text")
      */
-    private $typeInscription;
+    private $raison;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Compte")
-     * @ORM\JoinColumn(name="compte_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="Compte")
+     * @ORM\JoinColumn(name="$compte_id", referencedColumnName="id")
      */
     private $compte_id;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Commentaire")
+     * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id")
+     */
+    private $commentaire_id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Activite")
@@ -52,6 +59,22 @@ class Inscrire
     /**
      * @return mixed
      */
+    public function getCommentaireId()
+    {
+        return $this->commentaire_id;
+    }
+
+    /**
+     * @param mixed $commentaire_id
+     */
+    public function setCommentaireId($commentaire_id): void
+    {
+        $this->commentaire_id = $commentaire_id;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getCompteId()
     {
         return $this->compte_id;
@@ -65,21 +88,22 @@ class Inscrire
         $this->compte_id = $compte_id;
     }
 
-
     public function getId()
     {
         return $this->id;
     }
 
-    public function getTypeInscription(): ?bool
+    public function getRaison(): ?string
     {
-        return $this->typeInscription;
+        return $this->raison;
     }
 
-    public function setTypeInscription(?bool $typeInscription): self
+    public function setRaison(string $raison): self
     {
-        $this->typeInscription = $typeInscription;
+        $this->raison = $raison;
 
         return $this;
     }
+
+
 }

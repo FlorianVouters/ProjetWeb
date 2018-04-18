@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\RapportRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ReagitRepository")
  */
-class Rapport
+class React
 {
     /**
      * @ORM\Id()
@@ -17,26 +17,25 @@ class Rapport
     private $id;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="json")
      */
-    private $raison;
+    private $typeVote;
 
     /**
-     * @ORM\OneToMany(targetEntity="Compte")
+     * @ORM\ManyToOne(targetEntity="Compte")
      * @ORM\JoinColumn(name="$compte_id", referencedColumnName="id")
      */
     private $compte_id;
 
-
     /**
      * @ORM\ManyToOne(targetEntity="Commentaire")
-     * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="$commentaire_id", referencedColumnName="id")
      */
     private $commentaire_id;
 
     /**
      * @ORM\ManyToOne(targetEntity="Activite")
-     * @ORM\JoinColumn(name="activite_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="$activite_id", referencedColumnName="id")
      */
     private $activite_id;
 
@@ -88,22 +87,22 @@ class Rapport
         $this->compte_id = $compte_id;
     }
 
+
+
     public function getId()
     {
         return $this->id;
     }
 
-    public function getRaison(): ?string
+    public function getTypeVote()
     {
-        return $this->raison;
+        return $this->typeVote;
     }
 
-    public function setRaison(string $raison): self
+    public function setTypeVote($typeVote): self
     {
-        $this->raison = $raison;
+        $this->typeVote = $typeVote;
 
         return $this;
     }
-
-
 }

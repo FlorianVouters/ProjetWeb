@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ReagitRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\InscrireRepository")
  */
-class Reagit
+class Registration
 {
     /**
      * @ORM\Id()
@@ -17,25 +17,19 @@ class Reagit
     private $id;
 
     /**
-     * @ORM\Column(type="json")
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    private $typeVote;
+    private $typeInscription;
 
     /**
      * @ORM\ManyToOne(targetEntity="Compte")
-     * @ORM\JoinColumn(name="$compte_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="compte_id", referencedColumnName="id")
      */
     private $compte_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Commentaire")
-     * @ORM\JoinColumn(name="$commentaire_id", referencedColumnName="id")
-     */
-    private $commentaire_id;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Activite")
-     * @ORM\JoinColumn(name="$activite_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="activite_id", referencedColumnName="id")
      */
     private $activite_id;
 
@@ -58,22 +52,6 @@ class Reagit
     /**
      * @return mixed
      */
-    public function getCommentaireId()
-    {
-        return $this->commentaire_id;
-    }
-
-    /**
-     * @param mixed $commentaire_id
-     */
-    public function setCommentaireId($commentaire_id): void
-    {
-        $this->commentaire_id = $commentaire_id;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getCompteId()
     {
         return $this->compte_id;
@@ -88,20 +66,19 @@ class Reagit
     }
 
 
-
     public function getId()
     {
         return $this->id;
     }
 
-    public function getTypeVote()
+    public function getTypeInscription(): ?bool
     {
-        return $this->typeVote;
+        return $this->typeInscription;
     }
 
-    public function setTypeVote($typeVote): self
+    public function setTypeInscription(?bool $typeInscription): self
     {
-        $this->typeVote = $typeVote;
+        $this->typeInscription = $typeInscription;
 
         return $this;
     }

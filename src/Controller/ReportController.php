@@ -7,14 +7,14 @@
  */
 
 namespace App\Controller;
-use App\Entity\Rapport;
+use App\Entity\Report;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class RapportController extends Controller
+class ReportController extends Controller
 {
     public function addReport($raison, $compte_id){
         $entityManager = $this->getDoctrine()->getManager();
-        $rapport = new Rapport();
+        $rapport = new Report();
 
         $rapport->setRaison($raison);
         $rapport->setCompteId($compte_id);

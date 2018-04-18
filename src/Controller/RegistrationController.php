@@ -7,14 +7,14 @@
  */
 
 namespace App\Controller;
-use App\Entity\Inscrire;
+use App\Entity\Registration;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class InscrireController extends Controller
+class RegistrationController extends Controller
 {
     public function addRegisterToActivity($compte_id, $activite_id, $typeInscription){
         $entityManager = $this->getDoctrine()->getManager();
-        $inscrire = new Inscrire();
+        $inscrire = new Registration();
 
         $inscrire->setCompteId($compte_id);
         $inscrire->setActiviteId($activite_id);

@@ -7,20 +7,20 @@
  */
 
 namespace App\Controller;
-use App\Entity\Activite;
+use App\Entity\Activity;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
-class ActiviteController extends Controller
+class ActivityController extends Controller
 {
     public function getActivityByID($id){
 
-        $repository = $this->getDoctrine()->getRepository(Activite::class);
+        $repository = $this->getDoctrine()->getRepository(Activity::class);
         $activite = $repository->find($id);
         return $activite;
     }
     public function getActivityByVisibility($etatVisibilite){
 
-        $repository = $this->getDoctrine()->getRepository(Activite::class);
+        $repository = $this->getDoctrine()->getRepository(Activity::class);
         $activite = $repository->findBy([
             'etatVisibilite' => $etatVisibilite
         ]);
@@ -29,7 +29,7 @@ class ActiviteController extends Controller
 
     public function addActivity($nom, $description, $image){
         $entityManager = $this->getDoctrine()->getManager();
-        $activity = new Activite();
+        $activity = new Activity();
 
         $activity->setNom($nom);
         $activity->setDescription($description);
@@ -44,7 +44,7 @@ class ActiviteController extends Controller
     }
     public function setActivity($nom, $description, $image, $date, $recurrence, $prix, $visibility, $statut){
         $entityManager = $this->getDoctrine()->getManager();
-        $activity = new Activite();
+        $activity = new Activity();
 
         $activity->setNom($nom);
         $activity->setDescription($description);

@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PanierRepository")
  */
-class Panier extends Controller
+class Basket extends Controller
 {
     /**
      * @ORM\Id()

@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
  */
-class Produit extends Controller
+class Product extends Controller
 {
     /**
      * @ORM\Id()
