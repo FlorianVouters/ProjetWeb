@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Events;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\EventDispatcher\EventDispatcher;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
@@ -24,7 +25,6 @@ class RegistrationController extends Controller
     {
     
         $user = new User();
-        var_dump(UserType::class);
         $form = $this->createForm(UserType::class, $user);
 
         $form->handleRequest($request);
@@ -56,7 +56,7 @@ class RegistrationController extends Controller
             $event = new GenericEvent($user);
             $eventDispatcher->dispatch(Events::USER_REGISTERED, $event);
 
-            return $this->redirectToRoute('security_login');
+            return new JsonResponse(array('message' => 'Success !'));
         }
 
         return $this->render(

@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 //use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use App\Entity\Product;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -44,6 +45,16 @@ class IndexController extends Controller
             return $this->redirect('/');
         }
         return $this->render('activate/activate.html.twig');
+    }
+
+    /**
+     * @Route("/test", name="test")
+     */
+    public function test()
+    {
+        $product = new Product();
+        var_dump($product);
+        die();
     }
 
 }

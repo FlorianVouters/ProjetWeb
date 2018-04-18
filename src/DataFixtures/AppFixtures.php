@@ -42,5 +42,9 @@ class AppFixtures extends Fixture
         ];
     }
 
+    public function getOrder()
+    {
+        return 3;
+    }
 
 }
