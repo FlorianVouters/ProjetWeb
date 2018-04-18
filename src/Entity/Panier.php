@@ -33,6 +33,28 @@ class Panier
     private $compte_id;
 
     /**
+     * @ManyToOne(targetEntity="Produit")
+     * @JoinColumn(name="$produit_id", referencedColumnName="id")
+     */
+    private $produit_id;
+
+    /**
+     * @return mixed
+     */
+    public function getProduitId()
+    {
+        return $this->produit_id;
+    }
+
+    /**
+     * @param mixed $produit_id
+     */
+    public function setProduitId($produit_id): void
+    {
+        $this->produit_id = $produit_id;
+    }
+
+    /**
      * @return mixed
      */
     public function getCompteId()

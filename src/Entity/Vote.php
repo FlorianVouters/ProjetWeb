@@ -22,7 +22,7 @@ class Vote
     private $vote;
 
     /**
-     * @OneToOne(targetEntity="Compte")
+     * @ManyToOne(targetEntity="Compte")
      * @JoinColumn(name="$compte_id", referencedColumnName="id")
      */
     private $compte_id;

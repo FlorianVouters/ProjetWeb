@@ -22,13 +22,13 @@ class Commentaire
     private $description;
 
     /**
-     * @OneToOne(targetEntity="Compte")
+     * @ManyToOne(targetEntity="Compte")
      * @JoinColumn(name="compte_id", referencedColumnName="id")
      */
     private $compte_id;
 
     /**
-     * @OneToOne(targetEntity="Activite")
+     * @ManyToOne(targetEntity="Activite")
      * @JoinColumn(name="activite_id", referencedColumnName="id")
      */
     private $activite_id;

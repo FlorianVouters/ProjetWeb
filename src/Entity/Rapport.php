@@ -22,20 +22,20 @@ class Rapport
     private $raison;
 
     /**
-     * @OneToOne(targetEntity="Compte")
+     * @OneToMany(targetEntity="Compte")
      * @JoinColumn(name="$compte_id", referencedColumnName="id")
      */
     private $compte_id;
 
 
     /**
-     * @OneToOne(targetEntity="Commentaire")
+     * @ManyToOne(targetEntity="Commentaire")
      * @JoinColumn(name="commentaire_id", referencedColumnName="id")
      */
     private $commentaire_id;
 
     /**
-     * @OneToOne(targetEntity="Activite")
+     * @ManyToOne(targetEntity="Activite")
      * @JoinColumn(name="activite_id", referencedColumnName="id")
      */
     private $activite_id;
