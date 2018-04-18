@@ -44,5 +44,6 @@ security:
         - { path: '^/admin', roles: ROLE_ADMIN }
         - { path: '^/moderate', roles: [ROLE_CESI, ROLE_ADMIN] }
         - { path: '^/member', roles: [ROLE_CESI, ROLE_ADMIN, ROLE_USER] }
-        - { path: '^/suggestion', roles: [ROLE_CESI, ROLE_ADMIN, ROLE_USER] }
+        - { path: '^/activty', roles: [ROLE_CESI, ROLE_ADMIN, ROLE_USER] }
         - { path: '^/invited', roles: [ROLE_INVITED] }
+        - { path: '^/account', roles: [ROLE_CESI, ROLE_ADMIN, ROLE_USER, ROLE_INVITED] }
