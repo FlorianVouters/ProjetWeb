@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ event.name }}{% endblock %}
+
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="row eventSeparation">
+            <div class="card text-left text-white border-dark bg-brown col-md-8 offset-md-2">
+                <h1 class="card-header text-center">{{ event.name }}</h1>
+                <img class="card-img-top" src="{{ event.image }}" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">{{ event.description }}</p>
+                    <div class="row">
+                        <div class="col-sm-4 offset-sm-1 text-left bg-brown" style="border: #343a40 3px solid; border-radius: 10px">
+                            Prix : {{ event.price }}€
+                        </div>
+                        <div class="col-sm-4 offset-sm-2 text-left bg-brown" style="border: #343a40 3px solid; border-radius: 10px">
+                            Date : {{ event.date }}
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-light col-lg-3 offset-lg-2 col-md-4 offset-md-1" style="border: #343a40 3px solid; border-radius: 10px">Je participe</a>
+                    <a href="#" class="btn btn-light col-lg-3 offset-lg-2 col-md-4 offset-md-2 text-muted" style="border: #343a40 3px solid; border-radius: 10px">Participants</a>
+                    <a href="#" class="btn btn-light col-lg-3 offset-lg-2 col-md-4 offset-md-1 text-muted" style="border: #343a40 3px solid; border-radius: 10px">Signaler</a>
+                    <a href="#" class="btn btn-light col-lg-3 offset-lg-2 col-md-4 offset-md-2 text-muted" style="border: #343a40 3px solid; border-radius: 10px">Supprimer</a>
+                    <!--</div>-->
+                </div>
+                <div class="card-footer">
+                    <div class="row">
+                        <a href="#" class="btn btn-white col-lg-2 offset-lg-0 col-md-4 offset-md-1 col-6" data-toggle="tooltip" data-placement="top" title="Nombre de like" style="border: #343a40 3px solid; border-radius: 10px"><img src="img/like.png" alt="Like"></a>
+                        <a href="#" class="btn btn-white col-lg-2 offset-lg-1 col-md-4 offset-md-2 col-6" data-toggle="tooltip" data-placement="top" title="Nombre de dislike" style="border: #343a40 3px solid; border-radius: 10px"><img src="img/dislike.png" alt="Dislike"></a>
+                        <a href="#" class="btn btn-white col-lg-2 offset-lg-1 col-md-4 offset-md-1 col-6" data-toggle="tooltip" data-placement="top" title="Nombre de j'adore" style="border: #343a40 3px solid; border-radius: 10px"><img src="img/heart.png" alt="J'adore"></a>
+                        <a href="#" class="btn btn-white col-lg-2 offset-lg-1 col-md-4 offset-md-2 col-6" data-toggle="tooltip" data-placement="top" title="Grrrr" style="border: #343a40 3px solid; border-radius: 10px"><img src="img/grrr.png" alt="Grrrr"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row comments">
+            <div class="col-md-8 offset-md-2">
+
+                <div class="media commentSeparation bg-lightBrown" style="border-radius: 10px; border: 3px black solid">
+                    <div class="media-body" style="margin-bottom: 5px">
+                        <h5 class="mt-0" style="margin-left: 15px"><strong>Comment</strong></h5>
+                        <p style="margin: 0 15px 15px">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias animi asperiores at culpa delectus dicta dolor dolorem doloremque dolorum, exercitationem fuga fugiat iste, nesciunt praesentium qui quis repudiandae saepe voluptates?</p>
+                        <a href="#" class="btn btn-light col-sm-2 offset-sm-3 text-muted" style="border: #343a40 3px solid; border-radius: 10px">Signaler</a>
+                        <a href="#" class="btn btn-light col-sm-3 offset-sm-1 text-muted" style="border: #343a40 3px solid; border-radius: 10px">Supprimer</a>
+                    </div>
+                </div>
+                <div class="media commentSeparation bg-lightBrown" style="border-radius: 10px; border: 3px black solid">
+                    <div class="media-body" style="margin-bottom: 5px">
+                        <h5 class="mt-0" style="margin-left: 15px;"><strong>Comment</strong></h5>
+                        <p style="margin: 0 15px 15px;"><img src="img/panorama.jpg" alt="Image Postée" style="width: 100%; border-radius: 10px"></p>
+                        <a href="#" class="btn btn-light col-sm-2 offset-sm-3 text-muted" style="border: #343a40 3px solid; border-radius: 10px">Signaler</a>
+                        <a href="#" class="btn btn-light col-sm-3 offset-sm-1 text-muted" style="border: #343a40 3px solid; border-radius: 10px">Supprimer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}

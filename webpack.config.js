@@ -12,8 +12,9 @@ Encore
 
     // uncomment to define the assets of the project
     .addEntry('js/bootstrapBundle', './assets/js/bootstrap.bundle.js')
+    .addEntry('js/creation', './assets/js/creation.js')
 
-    .addStyleEntry('css/shop', './assets/css/shop.css')
+    .addStyleEntry('css/style', './assets/css/style.css')
     .addStyleEntry('css/bootstrap', './assets/css/bootstrap.css')
 
     // uncomment if you use Sass/SCSS files

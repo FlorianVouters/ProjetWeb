@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Evènements{% endblock %}
+
+
+{% block body %}
+
+    <div class="container">
+
+        <div class="row">
+            <h1 class="col-md-4 offset-md-4 text-center"><strong>EVENEMENTS</strong></h1>
+        </div>
+
+
+
+        <div class="row eventSeparation">
+            <div class="card text-left text-white border-dark bg-brown col-md-6 offset-md-3">
+                <h2 class="card-header">Evènement #1</h2>
+                <img class="card-img-top" src="img/panorama.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste libero qui quos reprehenderit sequi? Aperiam asperiores assumenda et explicabo fugit laborum nisi quibusdam quis quisquam, rerum tenetur, velit veniam veritatis.</p>
+                    <div class="row">
+                        <div class="col-sm-3 offset-sm-1 text-left bg-brown" style="border: #343a40 3px solid; border-radius: 10px">
+                            Prix :
+                        </div>
+                        <div class="col-sm-4 offset-sm-3 text-left bg-brown" style="border: #343a40 3px solid; border-radius: 10px">
+                            Date :
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-light col-sm-4 offset-sm-4" style="border: #343a40 3px solid; border-radius: 10px">Voir</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row eventSeparation">
+            <div class="card text-left text-white border-dark bg-brown col-md-6 offset-md-3">
+                <h2 class="card-header">Evenement #2</h2>
+                <img class="card-img-top" src="img/flower.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste libero qui quos reprehenderit sequi?</p>
+                    <div class="row">
+                        <div class="col-sm-3 offset-sm-1 text-left bg-brown" style="border: #343a40 3px solid; border-radius: 10px">
+                            Prix :
+                        </div>
+                        <div class="col-sm-4 offset-sm-3 text-left bg-brown" style="border: #343a40 3px solid; border-radius: 10px">
+                            Date :
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-light col-sm-4 offset-sm-4" style="border: #343a40 3px solid; border-radius: 10px">Voir</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="dropdown show offset-md-1">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Nombre d'évènements par page
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">5</a>
+                    <a class="dropdown-item" href="#">10</a>
+                </div>
+            </div>
+
+            <nav aria-label="Page navigation example">
+                <ul class="pagination offset-md-9">
+                    <li class="page-item">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+{% endblock %}

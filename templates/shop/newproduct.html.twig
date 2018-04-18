@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Nouveau Produit{% endblock %}
+
+{% block body %}
+
+
+    <div class="container" style="margin-bottom: 50px">
+        <h1 class="text-center">
+            Créer un nouveau produit
+        </h1>
+        <form id="newProduct" class="needs-validation col-md-6 offset-md-3" novalidate>
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="inputProductName">Nom du produit</label>
+                    <input type="text" class="form-control" id="inputProductName" placeholder="Nom produit" required>
+                    <div class="invalid-feedback">
+                        Veuillez indiquer le nom
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputProductDescription">Description du produit</label>
+                <textarea class="form-control" id="inputProductDescription" rows="3" placeholder="Description" required></textarea>
+                <div class="invalid-feedback">
+                    Veuillez fournir une description
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="inputPrice">Prix TTC</label>
+                    <input type="text" class="form-control" id="inputPrice" placeholder="Montant" required>
+                    <div class="invalid-feedback">
+                        Veuillez indiquer le prix
+                    </div>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="inputCatégorie">Catégorie</label>
+                    <input type="text" class="form-control" id="inputCatégorie" placeholder="Catégorie" required>
+                    <div class="invalid-feedback">
+                        Veuillez indiquer la catégorie
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="inputProductImage">Image du produit</label>
+                    <input type="file" class="form-control" id="inputProductImage" required>
+                    <div class="invalid-feedback">
+                        Veuillez choisir une image
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-right">
+                <button type="submit" class="btn btn-primary">Valider le produit</button>
+            </div>
+
+        </form>
+    </div>
+
+
+{% endblock %}
