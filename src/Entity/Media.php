@@ -6,7 +6,7 @@ use Symfony\Component\validator\Constraints as Assert;
 /**
  * Media
  *
- * @ORM\Table("media")
+ * @ORM\Table("Media")
  * @ORM\Entity(repositoryClass="App\Repository\MediaRepository")
  * @ORM\HasLifecycleCallbacks
  */
@@ -122,6 +122,7 @@ class Media
 
     public function getName()
     {
+        var_dump($this->name);
         return $this->name;
     }
 

@@ -3,10 +3,10 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Media;
+
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CategoryRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\CategorieRepository")
  */
 class Category
 {
@@ -18,17 +18,12 @@ class Category
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="Media", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $image;
-
-    /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=125)
      */
     private $name;
+
     /**
      * Get id
      *
@@ -38,17 +33,19 @@ class Category
     {
         return $this->id;
     }
+
     /**
      * Set nom
      *
      * @param string $name
-     * @return Categories
+     * @return Category
      */
     public function setName($name)
     {
         $this->name = $name;
         return $this;
     }
+
     /**
      * Get nom
      *
@@ -57,25 +54,5 @@ class Category
     public function getName()
     {
         return $this->name;
-    }
-    /**
-     * Set image
-     *
-     * @param Media $image
-     * @return Categories
-     */
-    public function setImage(Media $image)
-    {
-        $this->image = $image;
-        return $this;
-    }
-    /**
-     * Get image
-     *
-     * @return Media
-     */
-    public function getImage()
-    {
-        return $this->image;
     }
 }

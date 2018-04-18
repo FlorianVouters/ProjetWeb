@@ -3,14 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormTypeInterface;
-use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ActivityRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ActiviteRepository")
  */
 class Activity
 {
@@ -38,14 +33,14 @@ class Activity
     private $image;
 
     /**
-     * @ORM\Column(type="datetime_immutable", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $date;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $reccurence;
+    private $currency;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
@@ -53,9 +48,9 @@ class Activity
     private $price;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
-    private $displayed;
+    private $visibility;
 
     /**
      * @ORM\Column(type="boolean")
@@ -103,26 +98,26 @@ class Activity
         return $this;
     }
 
-    public function getDate(): ?\DateTimeImmutable
+    public function getDate(): ?\DateTimeInterface
     {
         return $this->date;
     }
 
-    public function setDate(?\DateTimeImmutable $date): self
+    public function setDate(?\DateTimeInterface $date): self
     {
         $this->date = $date;
 
         return $this;
     }
 
-    public function getReccurence(): ?string
+    public function getCurrency(): ?string
     {
-        return $this->reccurence;
+        return $this->currency;
     }
 
-    public function setReccurence(?string $reccurence): self
+    public function setCurrency(?string $currency): self
     {
-        $this->reccurence = $reccurence;
+        $this->currency = $currency;
 
         return $this;
     }
@@ -139,14 +134,14 @@ class Activity
         return $this;
     }
 
-    public function getDisplayed(): ?bool
+    public function getVisibility(): ?bool
     {
-        return $this->displayed;
+        return $this->visibility;
     }
 
-    public function setDisplayed(bool $displayed): self
+    public function setVisibility(?bool $visibility): self
     {
-        $this->displayed = $displayed;
+        $this->visibility = $visibility;
 
         return $this;
     }
@@ -162,5 +157,4 @@ class Activity
 
         return $this;
     }
-
 }

@@ -9,7 +9,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
- * @ORM\Table(name="user")
+ * @ORM\Table(name="User")
  * @UniqueEntity(fields="email", message="Email déjà utilisé")
  */
 class User implements UserInterface, \Serializable

@@ -5,13 +5,13 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
  */
 class Product
 {
     /**
-     * @ORM\Id
-     * @ORM\GeneratedValue
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
     private $id;
@@ -27,74 +27,29 @@ class Product
     private $description;
 
     /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $sold;
+
+    /**
      * @ORM\OneToOne(targetEntity="Media", cascade={"persist","remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="$categorie_id", referencedColumnName="id")
      */
-    private $category;
+    private $category_id;
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $price;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $sells;
-
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @param mixed $name
-     */
-    public function setName($name): void
-    {
-        $this->name = $name;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getDescription()
-    {
-        return $this->description;
-    }
-
-    /**
-     * @param mixed $description
-     */
-    public function setDescription($description): void
-    {
-        $this->description = $description;
-    }
 
     /**
      * @return mixed
@@ -107,7 +62,7 @@ class Product
     /**
      * @param mixed $image
      */
-    public function setImage(Media $image): void
+    public function setImage($image): void
     {
         $this->image = $image;
     }
@@ -115,50 +70,85 @@ class Product
     /**
      * @return mixed
      */
-    public function getCategory()
+    public function getCategoryId()
     {
-        return $this->category;
+        return $this->category_id;
     }
 
     /**
-     * @param mixed $category
+     * @param mixed $category_id
      */
-    public function setCategory(Category $category): void
+    public function setCategoryId($category_id): void
     {
-        $this->category = $category;
+        $this->category_id = $category_id;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getPrice()
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
     {
         return $this->price;
     }
 
-    /**
-     * @param mixed $price
-     */
-    public function setPrice($price): void
+    public function setPrice(int $price): self
     {
         $this->price = $price;
+
+        return $this;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getSells()
+    public function getSold(): ?int
     {
-        return $this->sells;
+        return $this->sold;
     }
 
-    /**
-     * @param mixed $sells
-     */
-    public function setSells($sells): void
+    public function setSold(int $sold): self
     {
-        $this->sells = $sells;
+        $this->sold = $sold;
+
+        return $this;
     }
 
+    public function deleteProduct(){
+        $entityManager = $this->getDoctrine()->getManager();
+        $produit = $this->id;
+        $entityManager->remove($produit);
+        $entityManager->flush();
+    }
+
+    public function productSold(){
+        $this->sold = $this->sold+1;
+    }
 
 }
+
+
+
