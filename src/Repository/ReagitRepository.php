@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Reagit;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * @method Reagit|null find($id, $lockMode = null, $lockVersion = null)
@@ -12,7 +13,7 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
  * @method Reagit[]    findAll()
  * @method Reagit[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ReagitRepository extends ServiceEntityRepository
+class ReagitRepository extends EntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
@@ -48,31 +49,5 @@ class ReagitRepository extends ServiceEntityRepository
     }
     */
 
-    public function getReactionByCommentID($commentaire_id){
 
-        $repository = $this->getDoctrine()->getRepository(\App\Entity\Reagit::class);
-        $reaction = $repository->find($commentaire_id);
-        return $reaction;
-
-    }
-    public function addReactionToComment($commentaire_id, $reaction){
-        $entityManager = $this->getDoctrine()->getManager();
-        $reagit = new \App\Entity\Reagit();
-
-        $reagit->setCommentaireId($commentaire_id);
-        $reagit->setTypeVote($reaction);
-
-        $entityManager->persist($reagit);
-        $entityManager->flutch();
-    }
-    public function addReactionToActivity($activite_id, $reaction){
-        $entityManager = $this->getDoctrine()->getManager();
-        $reagit = new \App\Entity\Reagit();
-
-        $reagit->setActiviteId($activite_id);
-        $reagit->setTypeVote($reaction);
-
-        $entityManager->persist($reagit);
-        $entityManager->flutch();
-    }
 }

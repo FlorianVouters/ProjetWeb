@@ -48,28 +48,6 @@ class TokenApiRepository extends ServiceEntityRepository
     }
     */
 
-    public function getAPIByToken($token){
 
-        $repository = $this->getDoctrine()->getRepository(\App\Entity\TokenApi::class);
-        $api = $repository->find($token);
-        return $api;
-    }
-
-    public function addTokenAPI($string, $compte_id){                //TODO: résoudre le problème de $compte_id
-        $entityManager = $this->getDoctrine()->getManager();
-        $tokenApi = new TokenApi();
-
-        $tokenApi->setToken($string);
-        $tokenApi->setPermission(['Basic']);
-        $entityManager->persist($tokenApi);
-        $entityManager->flush();
-    }
-
-    public function getTokenbyToken($token){
-
-        $repository = $this->getDoctrine()->getRepository(\App\Entity\TokenApi::class);
-        $token = $repository->find($token);
-        return $token;
-    }
 
 }

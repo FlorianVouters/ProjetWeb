@@ -48,42 +48,5 @@ class VoteRepository extends ServiceEntityRepository
     }
     */
 
-    public function getVoteByIDActivity($activite_id){
-
-        $repository = $this->getDoctrine()->getRepository(\App\Entity\Vote::class);
-        $vote = $repository->find($activite_id);
-        return $vote;
-
-    }
-
-    public function addVoteToActivity($activity_id, $compte_id, $vote){
-        $entityManager = $this->getDoctrine()->getManager();
-        $voteActivite = new \App\Entity\Vote();
-
-        $voteActivite->setActiviteId($activity_id);
-        $voteActivite->setCompteId($compte_id);
-        $voteActivite->setVote($vote);
-
-        $entityManager->persist($voteActivite);
-        $entityManager->flutch();
-    }
-    public function deleteVoteToActivity($activite_id, $compte_id){            //TODO: A vérifier
-        $entityManager = $this->getDoctrine()->getManager();
-        $repository = $this->getDoctrine()->getRepository(\App\Entity\Vote::class);
-        $voteActivite = $repository->findby(
-            ['activite_id' => $activite_id],
-            ['compte_id' => $compte_id]
-        );
-
-        $entityManager->remove($voteActivite);
-        $entityManager->flush();
-    }
-
-    public function getVoteByID($id){                       //TODO : Vérifier les clefs étrangères
-
-        $repository = $this->getDoctrine()->getRepository(\App\Entity\Vote::class);
-        $vote = $repository->find($id);
-        return $vote ;
-    }
 
 }

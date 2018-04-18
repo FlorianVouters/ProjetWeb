@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PanierRepository")
  */
-class Panier
+class Panier extends Controller
 {
     /**
      * @ORM\Id()
@@ -100,13 +101,14 @@ class Panier
     }
 
     public function basketSold(){
-        $entityManager = $this->getDoctrine()->getManager();            // TODO: A vérifier
-        $panier = $this->etatCommande=TRUE;
+        $entityManager = $this->getDoctrine()->getManager();
+        $panier = $this;
+        $panier->setEtatCommande(true);
         $entityManager->persist($panier);
         $entityManager->flush();
 
     }
-    public function deleteBasket(){                                 //TODO : Vérifier le code ici
+    public function deleteBasket(){
         $entityManager = $this->getDoctrine()->getManager();
         $panier = $this->id;
         $entityManager->remove($panier);

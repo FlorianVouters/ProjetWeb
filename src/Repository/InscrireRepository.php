@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Inscrire;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\EntityRepository;
 
 /**
  * @method Inscrire|null find($id, $lockMode = null, $lockVersion = null)
@@ -48,17 +49,6 @@ class InscrireRepository extends ServiceEntityRepository
     }
     */
 
-    public function addRegisterToActivity($compte_id, $activite_id, $typeInscription){
-        $entityManager = $this->getDoctrine()->getManager();
-        $inscrire = new \App\Entity\Inscrire();
-
-        $inscrire->setCompteId($compte_id);
-        $inscrire->setActiviteId($activite_id);
-        $inscrire->setTypeInscription($typeInscription);
-
-        $entityManager->persist($inscrire);
-        $entityManager->flutch();
-    }
 
 
 }

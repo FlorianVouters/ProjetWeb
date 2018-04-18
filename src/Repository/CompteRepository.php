@@ -48,19 +48,6 @@ class CompteRepository extends ServiceEntityRepository
     }
     */
 
-    public function getUserByID($id){
-
-
-        $repository = $this->getDoctrine()->getRepository(\App\Entity\Compte::class);
-        $compte = $repository->find($id);
-        return $compte;
-
-    }
-    public function getUserByEmail($adresseMail){
-        $repository = $this->getDoctrine()->getRepository(\App\Entity\Compte::class);
-        $compte = $repository->find($adresseMail);
-        return $compte;
-    }
 
 
 

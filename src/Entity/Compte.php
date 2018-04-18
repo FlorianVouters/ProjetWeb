@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompteRepository")
  */
-class Compte
+class Compte extends Controller
 {
     /**
      * @ORM\Id()
