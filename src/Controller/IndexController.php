@@ -19,11 +19,11 @@ class IndexController extends Controller
     }
 
     /**
-     * @Route("/home", name="home")
+     * @Route("/shop", name="shop")
      */
-    public function home()
+    public function shop()
     {
-        return $this->render('home/home.html.twig', array('products' => array(1 => array('id' => 2, 'name' => 'Lucien', 'description' => "Quand le chat à la queue verticale, c'est qu'il est en confiance", 'image' => "img/imortalized.jpg", 'price' => 15, 'category' => 'SCEP'))));
+        return $this->render('shop/shop.html.twig', array('products' => array(1 => array('id' => 2, 'name' => 'Lucien', 'description' => "Quand le chat à la queue verticale, c'est qu'il est en confiance", 'image' => "img/imortalized.jpg", 'price' => 15, 'category' => 'SCEP'))));
     }
 
     /**
