@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/category")
  */
-class CategoryController extends Controller
+class CategoryAdminController extends Controller
 {
     /**
      * @Route("/", name="category_index", methods="GET")
