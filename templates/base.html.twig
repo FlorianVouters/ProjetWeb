@@ -6,13 +6,13 @@
               content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, shrink-to-fit=no">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         {% block stylesheets %}
-        <link href="{{ asset("assets/css/sign.css") }}" rel="stylesheet" type="text/css" />
-        <link href="{{ asset("C:\Users\Robin\Documents\GitHub\ProjetWeb\assets\vendor\bootstrap-4.1.0\dist\css\bootstrap.css") }}" rel="stylesheet" type="text/css" />
-        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
+        <link href="{{ asset("build/css/sign.css") }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset("assets/vendor/bootstrap-4.1.0/dist/css/bootstrap.css") }}" rel="stylesheet" type="text/css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-        <title>Sign In / Up</title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.3.1/semantic.css" rel="stylesheet" type="text/css">
         {% endblock %}
+
+        <title>Sign In / Up</title>
     </head>
     <body>
 
@@ -33,10 +33,10 @@
                 </ul>
                 <ul class="navbar-nav mr-auto mt-2 mt-lg-0 offset-md-3">
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: white"><img src="{{ asset('img/facebook.png') }}" width="30" height="30"></a>
+                        <a class="nav-link" href="#" style="color: white"><img src="{{ asset('web/img/facebook.png') }}" width="30" height="30"></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" style="color: white"><img src="{{ asset('img/twitter.png') }}" width="30" height="30"></a>
+                        <a class="nav-link" href="#" style="color: white"><img src="{{ asset('../web/img/twitter.png') }}" width="30" height="30"></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" style="color: white"><img src="img/youtube.png" width="30" height="30"></a>
@@ -50,10 +50,9 @@
     </header>
 
 
-    <img src="../web/img/twitter.png" width="32" height="32">
 
     {% block body %}
-
+        <img src="../web/img/twitter.png" width="32" height="32">
     {% endblock %}
     {% block javascripts %}
 

@@ -15,7 +15,15 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return $this->render('home/home.html.twig');
+        return $this->render('base.html.twig');
+    }
+
+    /**
+     * @Route("/home", name="home")
+     */
+    public function home()
+    {
+        return $this->render('home/home.html.twig', array('products' => array(1 => array('id' => 2, 'name' => 'Lucien', 'description' => "Quand le chat à la queue verticale, c'est qu'il est en confiance", 'image' => "img/imortalized.jpg", 'price' => 15, 'category' => 'SCEP'))));
     }
 
     /**

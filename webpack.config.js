@@ -8,14 +8,13 @@ Encore
     .cleanupOutputBeforeBuild()
     .enableSourceMaps(!Encore.isProduction())
     // uncomment to create hashed filenames (e.g. app.abc123.css)
-    // .enableVersioning(Encore.isProduction())
+    .enableVersioning(Encore.isProduction())
 
     // uncomment to define the assets of the project
-    .addEntry('js/app', './assets/js/app.js')
-    .addStyleEntry('sign', './assets/css/sign.css')
-    .addStyleEntry('event', './assets/css/event.css')
-    .addStyleEntry('passForgot', './assets/css/forgotPswd.css')
-    .addStyleEntry('evenements', './assets/css/evenements.css')
+    .addEntry('js/bootstrapBundle', './assets/js/bootstrap.bundle.js')
+
+    .addStyleEntry('css/sign', './assets/css/sign.css')
+    .addStyleEntry('css/bootstrap', './assets/css/bootstrap.css')
 
     // uncomment if you use Sass/SCSS files
     .enableSassLoader()
