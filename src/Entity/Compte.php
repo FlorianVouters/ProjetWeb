@@ -143,8 +143,6 @@ class Compte
 
 
 
-    //registerTo($idActivity);
-    //voteTo($idActivity, $vote);
     public function getAllRegistrationsToActivity(){
 
         $repository = $this->getDoctrine()->getRepository(Inscrire::class);

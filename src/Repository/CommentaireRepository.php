@@ -47,4 +47,12 @@ class CommentaireRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function getAllCommentsByID($activite_id){
+
+        $repository = $this->getDoctrine()->getRepository(\App\Entity\Commentaire::class);
+        $commentaire = $repository->find($activite_id);
+        return $commentaire;
+
+    }
+
 }

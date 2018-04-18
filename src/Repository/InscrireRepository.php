@@ -47,4 +47,18 @@ class InscrireRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function addRegisterToActivity($compte_id, $activite_id, $typeInscription){
+        $entityManager = $this->getDoctrine()->getManager();
+        $inscrire = new \App\Entity\Inscrire();
+
+        $inscrire->setCompteId($compte_id);
+        $inscrire->setActiviteId($activite_id);
+        $inscrire->setTypeInscription($typeInscription);
+
+        $entityManager->persist($inscrire);
+        $entityManager->flutch();
+    }
+
+
 }

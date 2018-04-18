@@ -78,13 +78,5 @@ class TokenApi
         return $this;
     }
 
-    public function addTokenAPI($string, $compte_id){                //TODO: résoudre le problème de $compte_id
-        $entityManager = $this->getDoctrine()->getManager();
-        $tokenApi = new TokenApi();
 
-        $tokenApi->setToken($string);
-        $tokenApi->setPermission(['Basic']);
-        $entityManager->persist($tokenApi);
-        $entityManager->flush();
-    }
 }

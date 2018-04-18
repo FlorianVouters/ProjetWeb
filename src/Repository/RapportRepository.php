@@ -47,4 +47,13 @@ class RapportRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function addReport($raison, $compte_id){        //TODO: Vérifier le code
+        $entityManager = $this->getDoctrine()->getManager();
+        $rapport = new Rapport();
+
+        $rapport->setRaison($raison);
+        $rapport->setCompteId($compte_id);
+        $entityManager->persist($rapport);
+        $entityManager->flush();
+    }
 }

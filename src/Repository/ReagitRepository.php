@@ -47,4 +47,32 @@ class ReagitRepository extends ServiceEntityRepository
         ;
     }
     */
+
+    public function getReactionByCommentID($commentaire_id){
+
+        $repository = $this->getDoctrine()->getRepository(\App\Entity\Reagit::class);
+        $reaction = $repository->find($commentaire_id);
+        return $reaction;
+
+    }
+    public function addReactionToComment($commentaire_id, $reaction){
+        $entityManager = $this->getDoctrine()->getManager();
+        $reagit = new \App\Entity\Reagit();
+
+        $reagit->setCommentaireId($commentaire_id);
+        $reagit->setTypeVote($reaction);
+
+        $entityManager->persist($reagit);
+        $entityManager->flutch();
+    }
+    public function addReactionToActivity($activite_id, $reaction){
+        $entityManager = $this->getDoctrine()->getManager();
+        $reagit = new \App\Entity\Reagit();
+
+        $reagit->setActiviteId($activite_id);
+        $reagit->setTypeVote($reaction);
+
+        $entityManager->persist($reagit);
+        $entityManager->flutch();
+    }
 }
