@@ -3,117 +3,162 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Form\FormInterface;
-use Symfony\Component\Form\FormTypeInterface;
-use Symfony\Component\Form\FormView;
-use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  */
 class Product
 {
     /**
-     * @ORM\Id()
-     * @ORM\GeneratedValue()
+     * @ORM\Id
+     * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
     private $id;
+
     /**
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
     /**
      * @ORM\Column(type="text")
      */
     private $description;
+
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\OneToOne(targetEntity="Media", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $price;
+    private $image;
+
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="Category", cascade={"persist","remove"})
+     * @ORM\JoinColumn(nullable=false)
      */
     private $category;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $price;
+
     /**
      * @ORM\Column(type="integer")
      */
     private $sells;
-    /**
-     * @OneToOne(targetEntity="Panier")
-     * @JoinColumn(name="panier_id", referencedColumnName="id")
-     */
-    private $idBasket;
+
     /**
      * @return mixed
      */
-    public function getIdBasket()
-    {
-        return $this->idBasket;
-    }
-    /**
-     * @param mixed $idBasket
-     */
-    public function setIdBasket($idBasket): void
-    {
-        $this->idBasket = $idBasket;
-    }
     public function getId()
     {
         return $this->id;
     }
-    public function getName(): ?string
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
     {
         return $this->name;
     }
-    public function setName(string $name): self
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void
     {
         $this->name = $name;
-        return $this;
     }
-    public function getDescription(): ?string
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
     {
         return $this->description;
     }
-    public function setDescription(string $description): self
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description): void
     {
         $this->description = $description;
-        return $this;
     }
-    public function getPrice(): ?int
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
     {
-        return $this->price;
+        return $this->image;
     }
-    public function setPrice(int $price): self
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage(Media $image): void
     {
-        $this->price = $price;
-        return $this;
+        $this->image = $image;
     }
-    public function getCategory(): ?string
+
+    /**
+     * @return mixed
+     */
+    public function getCategory()
     {
         return $this->category;
     }
-    public function setCategory(string $category): self
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory(Category $category): void
     {
         $this->category = $category;
-        return $this;
     }
-    public function getSells(): ?int
+
+    /**
+     * @return mixed
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @param mixed $price
+     */
+    public function setPrice($price): void
+    {
+        $this->price = $price;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSells()
     {
         return $this->sells;
     }
-    public function setSells(int $sells): self
+
+    /**
+     * @param mixed $sells
+     */
+    public function setSells($sells): void
     {
         $this->sells = $sells;
-        return $this;
     }
-//    public function deleteProduct(){
-//        $produit = $this->id;
-//        remove($produit);
-//        flush();
-//    }
-//    public function productSold(){
-//        $this->sells = $this->sells+1;
-//    }
+
+
 }
