@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Activity index{% endblock %}
+
+{% block body %}
+    {#<h1>Activity index</h1>#}
+{{ dump(activities) }}
+    {#<table class="table">#}
+        {#<tbody>#}
+        {#{% for activity in activities %}#}
+            {#<tr>#}
+                {#<td>{{ activity.id }}</td>#}
+                {#<td>{{ activity.token }}</td>#}
+                {#{% for role in activity.permission %}#}
+                    {#{{ role }}#}
+                {#{% endfor %}#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% else %}#}
+            {#<tr>#}
+                {#<td colspan="9">no records found</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
+{% endblock %}

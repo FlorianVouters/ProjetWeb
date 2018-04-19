@@ -14,7 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 class TokenApiController extends Controller
 {
 
-    public function addTokenAPI($string, $compte_id){                //TODO: résoudre le problème de $compte_id
+    public function addTokenAPI($string, $compte_id){
         $entityManager = $this->getDoctrine()->getManager();
         $tokenApi = new TokenApi();
 
@@ -33,4 +33,6 @@ class TokenApiController extends Controller
         ]);
         return $token;
     }
+
+
 }

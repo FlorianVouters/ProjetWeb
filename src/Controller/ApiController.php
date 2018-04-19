@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Activity;
+use App\Entity\TokenApi;
+use App\Repository\TokenApiRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Twig\Environment;
@@ -14,59 +17,83 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 /**
  * Class ApiController
  * @package App\Controller
- * @ Route("/api", name="api")
+ * @Route("/api", name="api")
  */
 class ApiController extends Controller
 {
-//
-//    private $token;
-//
-//    private $nameTokenForAPI = 'tokenAPI';
-//
-//    /**
-//     * @Route("/{property}/{id}", name="getPropertyWithID",
-//     *     requirements={
-//     *              "property": "user|activity|product",
-//     *              "id": "\d+"
-//     *              }
-//     * )
-//     * @Method({"GET"})
-//     */
-//    public function getPropertyWithID(Request $request, $property, $id)
-//    {
-//        $tokenNumber = $request->headers->get($this->nameTokenForAPI);
-//
-//        if(!$tokenNumber) {
-//            return $this->returnJson(array('error' => "No$this->nameTokenForAPI given.",
-//                                            'code' => 1));
-//        }
-//        if(!$this->isTokenValid($tokenNumber)) {
-//            return $this->returnJson(array('error' => 'Wrong Token API.',
-//                                            'code' => 2));
-//        }
-//        if (!$this->hasPermissionFor($this->token->getPermissions(), 'GET')) {
-//            return $this->returnJson(array('error' => 'You don\'t have permission to do that.',
-//                                            'code' => 3));
-//        }
-//
-//        switch ($property)
-//        {
-//            case 'user':
-//                //@TODO return $this->returnJson(array('data' => getUserById($id)));
-//                break;
-//            case 'activity':
-//                //@TODO return $this->returnJson(array('data' => getActivityById($id));
-//                break;
-//            case 'product':
-//                //@TODO return $this->returnJson(array('data' => getProductById($id));
-//                break;
-//            default:
-//                return $this->returnJson(array('error' => 'Property not accepted',
-//                                                'code' => 4));
-//                break;
-//        }
-//    }
-//
+
+    private $token;
+
+    private $nameTokenForAPI = 'tokenAPI';
+
+
+    /**
+     * @Route("/{property}/{id}", name="getPropertyWithID")
+     * @Method({"GET"})
+     */
+    public function getPropertyWithID(Request $request, $property, $id, TokenApiController $tokenApiController)
+    {
+        $tokenNumber = $request->headers->get($this->nameTokenForAPI);
+
+        if(!$tokenNumber) {
+            return $this->returnJson(array('error' => "No $this->nameTokenForAPI given.",
+                                            'code' => 1));
+        }
+        if(!$this->isTokenValid($tokenNumber, $tokenApiController)) {
+            return $this->returnJson(array('error' => 'Wrong Token API.',
+                                            'code' => 2));
+        }
+
+        if (!$this->hasPermissionFor('GET')) {
+            return $this->returnJson(array('error' => 'You don\'t have permission to do that.',
+                                            'code' => 3));
+        }
+
+        if (!$id) return $this->returnJson(array('error' => "Missing Parameters",
+                                                "code" => 4));
+
+        switch ($property)
+        {
+            case 'user':
+                 return $this->returnJson(array('data' => $this->forward("App\Controller\UserAdminController::getUserByID", array(
+                     'id'       => $id,
+                 ))));
+                break;
+            case 'activity':
+                return $this->returnJson(array('data' => $this->forward("App\Controller\ActivityController::getActivityByID", array(
+                    'id'       => $id,
+                ))));
+                break;
+            case 'product':
+                return $this->returnJson(array('data' => $this->forward("App\Controller\ProductAdminController::getProduct", array(
+                    'id'       => $id,
+                ))));
+                break;
+            default:
+                return $this->returnJson(array('error' => 'Property not accepted',
+                                                'code' => 4));
+                break;
+        }
+    }
+
+    /**
+     * @ Route("/", name="product_index", methods="GET")
+     */
+    public function index(TokenApiRepository $tokenApiRepository): Response
+    {
+        //return $this->render('api/index.html.twig', ['activities' => $tokenApiRepository->findAll()]);
+
+        $apitoken = $tokenApiRepository->find(1);
+
+        var_dump($apitoken);
+        die();
+
+        $response = new JsonResponse($apitoken, 200);
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+
+    }
+
 //    /**
 //     * @Route("/{property}", name="getPropertyWithID",
 //     *     requirements={
@@ -113,29 +140,28 @@ class ApiController extends Controller
 //        }
 //
 //    }
-//
-//
-//
-//
-//
-//
-//    private function isTokenValid($token)
-//    {
-//        //@TODO return getTokenByToken($token) ? getTokenByToken($token) : false;
-//    }
-//
-//    private function hasPermissionFor($token, $askFor)
-//    {
-//        /*
-//         * @TODO
-//         *  return in_array($askFor, getPermissionApiById($token->getId())) ? true : false;
-//         */
-//    }
-//
-//    private function returnJson(array $options)
-//    {
-//        $response = new Response(json_encode($options));
-//        $response->headers->set('Content-Type', 'application/json');
-//        return $response;
-//    }
+
+
+    private function isTokenValid($token, TokenApiController $apiController)
+    {
+        return ($apiController->getTokenbyToken($token)) ? $this->returnJson(array('data' => $apiController->getTokenbyToken($token))) : null;
+    }
+
+    private function hasPermissionFor(string $askFor)
+    {
+         return in_array($askFor, $this->token->getPermissions()) ? true : false;
+    }
+
+    private function returnJson(array $options)
+    {
+        $response = new Response(json_encode($options));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    public function getTokenbyToken(){
+
+        $repository = $this->getDoctrine()->getRepository(TokenApi::class);
+        return $repository->findAll();
+    }
 }
