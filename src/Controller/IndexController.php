@@ -15,7 +15,7 @@ class IndexController extends Controller
      */
     public function index()
     {
-        return $this->render('home.html.twig');
+        return $this->render('home/home.html.twig');
     }
 
     /**
@@ -23,7 +23,7 @@ class IndexController extends Controller
      */
     public function shop()
     {
-        return $this->render('shop/shop.html.twig', array('products' => array(1 => array('id' => 2, 'name' => 'Lucien', 'description' => "Quand le chat à la queue verticale, c'est qu'il est en confiance", 'image' => "img/xavier.jpg", 'price' => 15, 'category' => 'SCEP'))));
+        return $this->render('shop/shop.html.twig', array('products' => array(1 => array('id' => 2, 'name' => 'Test', 'description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dolorum facilis maxime quasi ratione.", 'image' => "img/panorama.jpg", 'price' => 15, 'category' => 'Essai réussi'))));
     }
 
     /**
@@ -32,7 +32,7 @@ class IndexController extends Controller
     public function events()
     {
         return $this->render('event/events.html.twig'
-//            ,array('products' => array(1 => array('id' => 2, 'name' => 'Lucien', 'description' => "Quand le chat à la queue verticale, c'est qu'il est en confiance", 'image' => "img/xavier.jpg", 'price' => 15, 'category' => 'SCEP')))
+//            ,array('products' => array(1 => array('id' => 2, 'name' => 'Test', 'description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dolorum facilis maxime quasi ratione. Iusto.", 'image' => "img/xavier.jpg", 'price' => 15, 'category' => 'SCEP')))
         );
     }
 
@@ -42,7 +42,7 @@ class IndexController extends Controller
     public function event()
     {
         return $this->render('event/event.html.twig'
-            ,array('event' => array('id' => 2, 'name' => 'Lucien', 'description' => "Quand le chat à la queue verticale, c'est qu'il est en confiance. Lorsqu'une femme change d'homme, elle change de coiffure.", 'image' => "img/xavier.jpg", 'price' => 15, 'category' => 'SCEP', 'date' => '5 Novembre 1955'))
+            ,array('event' => array('id' => 2, 'name' => 'Test', 'description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dolorum facilis maxime quasi ratione. Aspernatur autem doloremque eos et itaque laboriosam molestias, nihil nulla quidem quisquam reiciendis saepe sit! Iusto.", 'image' => "img/imortalized.jpg", 'price' => 15, 'category' => 'SCEP', 'date' => '5 Novembre 1955'))
         );
     }
 
@@ -52,7 +52,19 @@ class IndexController extends Controller
     public function ideabox()
     {
         return $this->render('ideabox/ideabox.html.twig'
-            ,array('event' => array('id' => 2, 'name' => 'Lucien', 'description' => "Quand le chat à la queue verticale, c'est qu'il est en confiance. Lorsqu'une femme change d'homme, elle change de coiffure.", 'image' => "img/xavier.jpg", 'price' => 15, 'category' => 'SCEP', 'date' => '5 Novembre 1955'))
+            ,array('ideas' => array('id' => 2, 'name' => 'Test', 'description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dolorum facilis maxime quasi ratione. Aspernatur autem doloremque eos et itaque laboriosam molestias, nihil nulla quidem quisquam reiciendis saepe sit! Iusto.", 'image' => "img/xavier.jpg", 'price' => 15, 'category' => 'SCEP', 'date' => '5 Novembre 1955'))
+        );
+    }
+
+    /**
+     * @Route("/basket", name="basket")
+     */
+    public function basket()
+    {
+        return $this->render('shop/basket.html.twig'
+            ,array('products' => array(
+                1 => array('id' => 2, 'name' => 'Disturbed', 'description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dolorum facilis maxime quasi ratione. Aspernatur autem doloremque eos et itaque laboriosam molestias, nihil nulla quidem quisquam reiciendis saepe sit! Iusto.", 'image' => "img/imortalized.jpg", 'price' => 15, 'category' => 'SCEP', 'date' => '5 Novembre 1955'),
+                2 => array('id' => 3, 'name' => 'Panorama', 'description' => "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dolorum facilis maxime quasi ratione. Aspernatur autem doloremque eos et itaque laboriosam molestias, nihil nulla quidem quisquam reiciendis saepe sit! Iusto. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorem dolorum facilis maxime quasi ratione. Aspernatur autem doloremque eos et itaque laboriosam molestias, nihil nulla quidem quisquam reiciendis saepe sit! Iusto.", 'image' => "img/panorama.jpg", 'price' => 25, 'category' => 'SIDI', 'date' => '18 Juin 1998')))
         );
     }
 
@@ -61,7 +73,15 @@ class IndexController extends Controller
      */
     public function admin()
     {
-        return $this->render('Admin/index.html.twig');
+        return $this->render('admin/admin.html.twig');
+    }
+
+    /**
+     * @Route("/contact", name="contact")
+     */
+    public function contact()
+    {
+        return $this->render('home/contact.html.twig');
     }
 
     /**

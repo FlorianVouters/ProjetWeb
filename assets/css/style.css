@@ -10,6 +10,15 @@
     margin: 10px 0;
 }
 
+.adminButtonSeparation{
+    margin: 30px 0;
+}
+
+.btn-brown{
+    background-color: #7b3f00;
+    color: white;
+}
+
 .eventSeparation{
     margin: 30px 0;
 }
@@ -21,6 +30,11 @@
 .border-dark{
     border-width: 4px;
     border-radius: 10px;
+}
+
+.dark-outer-button{
+    border: #343a40 3px solid;
+    border-radius: 10px
 }
 
 .btn-white{

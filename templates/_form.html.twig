@@ -1,0 +1,54 @@
+{% for i in form.children|keys %}
+
+    {% if i != '_token' %}
+        {% set formChild = form[i] %}
+        {% set formVars = form[i].vars %}
+        {% set labelName = formChild.vars.id|split("_") %}
+        {% set labelName = labelName|join(" ")|capitalize %}
+
+        {% if formVars.block_prefixes[2] == "textarea" %}
+            <div class="form-row">
+                <div class="form-group col-12">
+                    <label for="{{ formVars.id }}">{{ formVars.label }}</label>
+                    <textarea class="form-control" id="{{ formVars.id }}" rows="3" placeholder="{{ formVars.name|capitalize }}"></textarea>
+
+        {% elseif form[i].children["file"] is defined %}
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ formVars.id }}">{{ formVars.label }}</label>
+                    <input type="file" id="{{ formVars.id }}" class="form-control" required />
+
+        {% elseif formVars.name == "date" %}
+            <div class="form-row">
+                <div class="form-group col-md-4">
+                    <label for="{{ formVars.id }}">{{ formVars.label }}</label>
+                    <input type="date" class="form-control" id="{{ formVars.id }}" placeholder="Date" required />
+
+        {% elseif formVars.block_prefixes[1] == "choice" %}
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ formVars.id }}">{{ formVars.label }}</label>
+                    <select id="{{ formVars.id }}" name="{{ formVars.full_name }}" class="form-control">
+                        {% for option in formVars.choices %}
+                            <option value="{{ option.value }}">{{ option.label }}</option>
+                        {% endfor %}
+                    </select>
+
+        {% else %}
+            <div class="form-row">
+                <div class="form-group col-md-12">
+                    <label for="{{ formVars.id }}">{{ formVars.label }}</label>
+
+                    <input type="text" id="{{ formVars.id }}" class="form-control" placeholder="{{ formVars.name|capitalize }}" required />
+
+        {% endif %}
+                    <div class="invalid-feedback">Veuillez remplir le champ.</div>
+                </div>
+            </div>
+
+
+    {% else %}
+
+    {% endif %}
+{% endfor %}
+<button class="btn">{{ button_label|default('Enregistrer') }}</button>

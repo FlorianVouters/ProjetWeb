@@ -13,6 +13,7 @@ Encore
     // uncomment to define the assets of the project
     .addEntry('js/bootstrapBundle', './assets/js/bootstrap.bundle.js')
     .addEntry('js/creation', './assets/js/creation.js')
+    .addEntry('js/buttonTrigger', './assets/js/buttonTrigger.js')
 
     .addStyleEntry('css/style', './assets/css/style.css')
     .addStyleEntry('css/bootstrap', './assets/css/bootstrap.css')

@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+
+{% block title %}Mon panier{% endblock %}
+
+{% block body %}
+
+
+    <div class="container bg-brown">
+        <h1 class="text-center" style="color: white">
+            Mon panier
+        </h1>
+        <div class="row">
+            <div class="col-md-8 offset-md-2" style="margin-bottom: 25px">
+
+
+
+
+                {% for product in products %}
+                    <div class="media commentSeparation bg-lightBrown" style="border-radius: 10px; border: 3px black solid">
+                        <img class="mr-3 align-self-center" src="{{ product.image }}" alt="Product Image" style="max-width: 25%; max-width: 25%; border-radius: 7px">
+                        <div class="media-body" style="margin-bottom: 5px">
+                            <h5 class="mt-0" style="margin-left: 15px"><strong>{{ product.name }}</strong></h5>
+                            <p style="margin: 0 15px 15px">{{ product.description }}</p>
+                            <div class="row">
+                                <div class="col-md-3 offset-md-3 dark-button" style="margin: 0 15px 15px">Prix : {{ product.price }}€</div>
+                            </div>
+                            <a href="#" class="btn btn-light col-sm-3 offset-sm-3 dark-button">Supprimer</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <p>Aucun produit retourné</p>
+                {% endfor %}
+
+                <div class="btn btn-light col-sm-3 offset-sm-2 dark-button">
+                    Valider mon panier
+                </div>
+
+                <div class="btn btn-light col-sm-4 offset-sm-2 dark-button">
+                    Supprimer mon panier
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}
