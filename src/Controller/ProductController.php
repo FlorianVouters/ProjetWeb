@@ -47,5 +47,27 @@ class ProductController extends Controller
         $entityManager->flush();
     }
 
+    public function deleteProduct($product_id){
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $produit = $repository->findOneBy([
+            'product_id' => $product_id,
+        ]);
+        $entityManager->remove($produit);
+        $entityManager->flush();
+    }
+
+    public function productSold($product_id){
+        $repository = $this->getDoctrine()->getRepository(Product::class);
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $produit = $repository->findOneBy([
+            'product_id' => $product_id,
+        ]);
+        $produit->nombreVente = $produit->nombreVente =1;
+        $entityManager->persist($produit);
+        $entityManager->flush();
+    }
 
 }

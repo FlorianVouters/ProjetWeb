@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CompteRepository")
  */
-class User extends Controller
+class User
 {
     /**
      * @ORM\Id()
@@ -144,22 +144,7 @@ class User extends Controller
 
 
 
-    public function getAllRegistrationsToActivity(){
 
-        $repository = $this->getDoctrine()->getRepository(Registration::class);
-        $inscription = $repository->findby([
-            'compte_id' => $this->id,
-        ]);
-        return $inscription;
-    }
-    public function getBasket(){
-        $repository = $this->getDoctrine()->getRepository(Basket::class);
-        $panier = $repository->findOneBy([
-           'compte_id' => $this->id,
-        ]);
-        return $panier;
-
-    }
 
 
 

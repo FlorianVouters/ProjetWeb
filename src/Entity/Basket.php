@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PanierRepository")
  */
-class Basket extends Controller
+class Basket
 {
     /**
      * @ORM\Id()
@@ -100,18 +100,5 @@ class Basket extends Controller
         return $this;
     }
 
-    public function basketSold(){
-        $entityManager = $this->getDoctrine()->getManager();
-        $panier = $this;
-        $panier->setEtatCommande(true);
-        $entityManager->persist($panier);
-        $entityManager->flush();
 
-    }
-    public function deleteBasket(){
-        $entityManager = $this->getDoctrine()->getManager();
-        $panier = $this->id;
-        $entityManager->remove($panier);
-        $entityManager->flush();
-    }
 }

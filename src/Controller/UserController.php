@@ -28,4 +28,20 @@ class UserController extends Controller
         return $compte;
     }
 
+    public function getAllRegistrationsToActivity($compte_id){
+
+        $repository = $this->getDoctrine()->getRepository(Registration::class);
+        $inscription = $repository->findby([
+            'compte_id' => $compte_id,
+        ]);
+        return $inscription;
+    }
+    public function getBasket($compte_id){
+        $repository = $this->getDoctrine()->getRepository(Basket::class);
+        $panier = $repository->findOneBy([
+            'compte_id' => $compte_id,
+        ]);
+        return $panier;
+
+    }
 }

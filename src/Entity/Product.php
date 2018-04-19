@@ -8,7 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
  */
-class Product extends Controller
+class Product
 {
     /**
      * @ORM\Id()
@@ -138,16 +138,7 @@ class Product extends Controller
         return $this;
     }
 
-    public function deleteProduct(){
-        $entityManager = $this->getDoctrine()->getManager();
-        $produit = $this->id;
-        $entityManager->remove($produit);
-        $entityManager->flush();
-    }
 
-    public function productSold(){
-        $this->nombreVente = $this->nombreVente+1;
-    }
 
 }
 

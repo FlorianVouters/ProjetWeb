@@ -12,5 +12,50 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class BasketController extends Controller
 {
+    public function basketSold($user_id){
+        $repository = $this->getDoctrine()->getRepository(Basket::class);
+        $entityManager = $this->getDoctrine()->getManager();
 
+        $panier = $repository->findOneBy([
+        'compte_id' => $user_id,
+            ]);
+        $panier->setEtatCommande(true);
+        $entityManager->persist($panier);
+        $entityManager->flush();
+    }
+
+
+    public function deleteBasket($user_id){
+        $repository = $this->getDoctrine()->getRepository(Basket::class);
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $panier = $repository->findOneBy([
+            'compte_id' => $user_id,
+        ]);
+        $entityManager->remove($panier);
+        $entityManager->flush();
+    }
+
+    public function addToBasket($product_id, $user_id){
+        $repository = $this->getDoctrine()->getRepository(Basket::class);
+
+        $basket = $repository->findOneBy([
+            'compte_id' => $user_id,
+        ]);
+        if ($basket == null){
+            $entityManager = $this->getDoctrine()->getManager();
+            $newBasket = new Basket();
+            $newBasket->setCompteId($user_id);
+            $newBasket->setProduitId($product_id);
+            $entityManager->persist($newBasket);
+            $entityManager->flush();
+
+        }
+        else {
+            $entityManager = $this->getDoctrine()->getManager();
+            $basket->setProduitId($product_id);
+            $entityManager->persist($basket);
+            $entityManager->flush();
+        }
+    }
 }
