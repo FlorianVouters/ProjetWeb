@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PanierRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\BasketRepository")
  */
 class Basket
 {
@@ -34,7 +34,7 @@ class Basket
 
     /**
      * @ORM\OneToMany(targetEntity="Product", mappedBy="basket")
-     * @ORM\JoinColumn(name="$produit_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="produit_id", referencedColumnName="id")
      */
     private $product_id;
 

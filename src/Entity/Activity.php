@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ActiviteRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ActivityRepository")
  */
 class Activity
 {
@@ -28,7 +28,7 @@ class Activity
 
     /**
      * @ORM\OneToOne(targetEntity="Media", cascade={"persist","remove"})
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $image;
 

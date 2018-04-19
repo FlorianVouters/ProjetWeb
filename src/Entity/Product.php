@@ -5,7 +5,7 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProductRepository")
  */
 class Product
 {
@@ -45,7 +45,7 @@ class Product
 
     /**
      * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(name="$categorie_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category_id;
 

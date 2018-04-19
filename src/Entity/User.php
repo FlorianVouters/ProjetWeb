@@ -60,6 +60,9 @@ class User implements UserInterface, \Serializable
      * @ORM\Column(type="json_array")
      */
     private $roles;
+
+    private $temp_roles;
+
     public function getId()
     {
         return $this->id;
@@ -208,6 +211,23 @@ class User implements UserInterface, \Serializable
         $fullName = explode(' ', $fullName);
         $this->firstname = $fullName[0];
         $this->surname = $fullName[1];
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTempRoles()
+    {
+        return $this->temp_roles;
+    }
+
+    /**
+     * @param mixed $temp_roles
+     */
+    public function setTempRoles($temp_roles): self
+    {
+        $this->temp_roles = $temp_roles;
         return $this;
     }
 
