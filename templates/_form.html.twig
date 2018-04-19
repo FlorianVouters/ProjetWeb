@@ -1,33 +1,48 @@
 {{ dump(form) }}
 
-<form method="post" name="{{ form.vars.name }}">
+<form method="post" name="{{ form.vars.name }} class="{{ form_class|default('') }}" {{ form_option|default(null) }}>
 {% for i in form.children|keys %}
         {% if i != '_token' %}
         {% set formChild = form[i] %}
             {% set formVars = form[i].vars %}
             {% set labelName = formChild.vars.id|split("_") %}
             {% set labelName = labelName|join(" ")|capitalize %}
-            <label for="{{ formVars.id }}">{{ (formVars.label) ? formVars.label : formVars.name|capitalize }}</label>
+
             {% if formVars.block_prefixes[2] == "textarea" %}
-                <textarea class="form-control" id="{{ formVars.id }}" rows="3" placeholder="{{ formVars.name|capitalize }}"></textarea>
+                <div class="form-row">
+                    <div class="form-group col-12">
+                        <label for="{{ formVars.id }}">{{ formVars.label }}</label>
+                        <textarea class="form-control" id="{{ formVars.id }}" rows="3" placeholder="{{ formVars.name|capitalize }}"></textarea>
             {% elseif form[i].children["file"] is defined %}
-                <input type="file" id="{{ formVars.id }}" class="form-control" required />
-            {% elseif formVars.name == "date" %}
-                    <input name="{{ formVars.full_name }}" type="date" class="form-control" id="{{ formVars.id }}" placeholder="Date" required />
-            {% elseif formVars.block_prefixes[1] == "choice" %}
-                <select id="{{ formVars.id }}" name="{{ formVars.full_name }}" class="form-control">
-                    {% for option in formVars.choices %}
-                        <option value="{{ option.value }}">{{ option.label }}</option>
-                    {% endfor %}
-                </select>
-            {% else %}
-                <input name="{{ formVars.full_name }}" type="text" id="{{ formVars.id }}" class="form-control"
-                {% if formVars.value %}
-                    value="{{ formVars.value }}"
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="{{ formVars.id }}">{{ formVars.label }}</label>
+                                <input type="file" id="{{ formVars.id }}" class="form-control" required />
+                {% elseif formVars.name == "date" %}
+                                <div class="form-row">
+                                    <div class="form-group col-md-4">
+                                        <label for="{{ formVars.id }}">{{ formVars.label }}</label>
+                                        <input name="{{ formVars.full_name }}" type="date" class="form-control" id="{{ formVars.id }}" placeholder="Date" required />
+                    {% elseif formVars.block_prefixes[1] == "choice" %}
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label for="{{ formVars.id }}">{{ formVars.label }}</label>
+                                                <select id="{{ formVars.id }}" name="{{ formVars.full_name }}" class="form-control">
+                                                    {% for option in formVars.choices %}
+                                                        <option value="{{ option.value }}">{{ option.label }}</option>
+                                                    {% endfor %}
+                                                </select>
                         {% else %}
-                            placeholder="{{ formVars.name|capitalize }}"
-                                {% endif %}required="required" />
-            {% endif %}
+                                                <div class="form-row">
+                                                    <div class="form-group col-md-12">
+                                                        <label for="{{ formVars.id }}">{{ formVars.label }}</label>
+                                                        <input name="{{ formVars.full_name }}" type="text" id="{{ formVars.id }}" class="form-control"
+                                                                {% if formVars.value %}
+                                                                    value="{{ formVars.value }}"
+                                                                        {% else %}
+                                                                            placeholder="{{ formVars.name|capitalize }}"
+                                                                                {% endif %}required="required" />
+                            {% endif %}
             <div class="invalid-feedback">Veuillez remplir le champ.</div>
         {% else %}
             <input type="hidden" id="{{ form[i].vars.id }}" name="{{ form[i].vars.full_name }}" value="{{ form[i].vars.value }}"/>
