@@ -28,25 +28,25 @@ class TokenApi
 
 
     /**
-     * @ORM\OneToOne(targetEntity="Compte")
+     * @ORM\OneToOne(targetEntity="User")
      * @ORM\JoinColumn(name="$compte_id", referencedColumnName="id")
      */
-    private $compte_id;
+    private $user_id;
 
     /**
      * @return mixed
      */
-    public function getCompteId()
+    public function getUserId()
     {
-        return $this->compte_id;
+        return $this->user_id;
     }
 
     /**
-     * @param mixed $compte_id
+     * @param mixed $user_id
      */
-    public function setCompteId($compte_id): void
+    public function setUserId($user_id): void
     {
-        $this->compte_id = $compte_id;
+        $this->user_id = $user_id;
     }
 
     public function getId()

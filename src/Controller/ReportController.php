@@ -21,4 +21,16 @@ class ReportController extends Controller
         $entityManager->persist($rapport);
         $entityManager->flush();
     }
+    public function deleteReport($report_id){
+        $repository = $this->getDoctrine()->getRepository(Report::class);
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $report = $repository->findOneBy([
+            'report_id' => $report_id,
+        ]);
+        $entityManager->remove($report);
+        $entityManager->flush();
+    }
+
+
 }

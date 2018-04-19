@@ -19,16 +19,16 @@ class Registration
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $typeInscription;
+    private $registrationType;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Compte")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="compte_id", referencedColumnName="id")
      */
     private $compte_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Activite")
+     * @ORM\ManyToOne(targetEntity="Activity")
      * @ORM\JoinColumn(name="activite_id", referencedColumnName="id")
      */
     private $activite_id;
@@ -71,14 +71,14 @@ class Registration
         return $this->id;
     }
 
-    public function getTypeInscription(): ?bool
+    public function getRegistrationType(): ?bool
     {
-        return $this->typeInscription;
+        return $this->registrationType;
     }
 
-    public function setTypeInscription(?bool $typeInscription): self
+    public function setRegistrationType(?bool $registrationType): self
     {
-        $this->typeInscription = $typeInscription;
+        $this->registrationType = $registrationType;
 
         return $this;
     }

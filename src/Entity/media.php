@@ -1,12 +1,10 @@
 <?php
 namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\validator\Constraints as Assert;
 
 /**
  * Media
  *
- * @ORM\Table("Media")
  * @ORM\Entity(repositoryClass="App\Repository\MediaRepository")
  * @ORM\HasLifecycleCallbacks
  */
@@ -23,7 +21,7 @@ class Media
     /**
      * @var \DateTime
      *
-     * @ORM\COlumn(name="updated_at",type="datetime", nullable=true)
+     * @ORM\Column(name="updated_at",type="datetime", nullable=true)
      */
     private $updateAt;
 

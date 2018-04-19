@@ -19,7 +19,7 @@ class Activity
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $name;
 
     /**
      * @ORM\Column(type="text")
@@ -40,17 +40,17 @@ class Activity
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $recurrence;
+    private $currency;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $prix;
+    private $price;
 
     /**
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $etatVisibilite;
+    private $visibility;
 
     /**
      * @ORM\Column(type="boolean")
@@ -62,14 +62,14 @@ class Activity
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    public function setNom(string $nom): self
+    public function setName(string $name): self
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
@@ -110,38 +110,38 @@ class Activity
         return $this;
     }
 
-    public function getRecurrence(): ?string
+    public function getCurrency(): ?string
     {
-        return $this->recurrence;
+        return $this->currency;
     }
 
-    public function setRecurrence(?string $recurrence): self
+    public function setCurrency(?string $currency): self
     {
-        $this->recurrence = $recurrence;
+        $this->currency = $currency;
 
         return $this;
     }
 
-    public function getPrix(): ?int
+    public function getPrice(): ?int
     {
-        return $this->prix;
+        return $this->price;
     }
 
-    public function setPrix(?int $prix): self
+    public function setPrice(?int $price): self
     {
-        $this->prix = $prix;
+        $this->price = $price;
 
         return $this;
     }
 
-    public function getEtatVisibilite(): ?bool
+    public function getVisibility(): ?bool
     {
-        return $this->etatVisibilite;
+        return $this->visibility;
     }
 
-    public function setEtatVisibilite(?bool $etatVisibilite): self
+    public function setVisibility(?bool $visibility): self
     {
-        $this->etatVisibilite = $etatVisibilite;
+        $this->visibility = $visibility;
 
         return $this;
     }

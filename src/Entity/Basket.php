@@ -3,7 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\PanierRepository")
@@ -20,55 +20,55 @@ class Basket
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $nombreArticle;
+    private $amout;
 
     /**
      * @ORM\Column(type="boolean")
      */
-    private $etatCommande;
+    private $orderState;
 
     /**
-     * @ORM\OneToOne(targetEntity="Compte")
+     * @ORM\OneToOne(targetEntity="User")
      * @ORM\JoinColumn(name="compte_id", referencedColumnName="id")
      */
-    private $compte_id;
+    private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Produit")
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="basket")
      * @ORM\JoinColumn(name="$produit_id", referencedColumnName="id")
      */
-    private $produit_id;
+    private $product_id;
 
     /**
      * @return mixed
      */
-    public function getProduitId()
+    public function getProductId()
     {
-        return $this->produit_id;
+        return $this->product_id;
     }
 
     /**
-     * @param mixed $produit_id
+     * @param mixed $product_id
      */
-    public function setProduitId($produit_id): void
+    public function setProductId($product_id): void
     {
-        $this->produit_id = $produit_id;
+        $this->product_id = $product_id;
     }
 
     /**
      * @return mixed
      */
-    public function getCompteId()
+    public function getUserId()
     {
-        return $this->compte_id;
+        return $this->user_id;
     }
 
     /**
-     * @param mixed $compte_id
+     * @param mixed $user_id
      */
-    public function setCompteId($compte_id): void
+    public function setUserId($user_id): void
     {
-        $this->compte_id = $compte_id;
+        $this->user_id = $user_id;
     }
 
     public function getId()
@@ -76,26 +76,26 @@ class Basket
         return $this->id;
     }
 
-    public function getNombreArticle(): ?int
+    public function getAmout(): ?int
     {
-        return $this->nombreArticle;
+        return $this->amout;
     }
 
-    public function setNombreArticle(?int $nombreArticle): self
+    public function setAmout(?int $amout): self
     {
-        $this->nombreArticle = $nombreArticle;
+        $this->amout = $amout;
 
         return $this;
     }
 
-    public function getEtatCommande(): ?bool
+    public function getOrderState(): ?bool
     {
-        return $this->etatCommande;
+        return $this->orderState;
     }
 
-    public function setEtatCommande(bool $etatCommande): self
+    public function setOrderState(bool $orderState): self
     {
-        $this->etatCommande = $etatCommande;
+        $this->orderState = $orderState;
 
         return $this;
     }

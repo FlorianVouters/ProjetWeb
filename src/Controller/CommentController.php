@@ -22,4 +22,28 @@ class CommentController extends Controller
 
     }
 
+    public function setCommentToActivity($activity_id, $user_id, $description)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $comment = new Comment();
+
+        $comment->setActiviteId($activity_id);
+        $comment->setCompteId($user_id);
+        $comment->setDescription($description);
+
+        $entityManager->persist($comment);
+        $entityManager->flush();
+    }
+    public function deleteCommentToActivity($comment_id){
+        $repository = $this->getDoctrine()->getRepository(Comment::class);
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $comment = $repository->findOneBy([
+            'comment_id' => $comment_id,
+        ]);
+        $entityManager->remove($comment);
+        $entityManager->flush();
+    }
+
+
 }

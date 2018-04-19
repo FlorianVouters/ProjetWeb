@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProduitRepository")
@@ -20,7 +19,7 @@ class Product
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $nom;
+    private $name;
 
     /**
      * @ORM\Column(type="text")
@@ -30,13 +29,13 @@ class Product
     /**
      * @ORM\Column(type="integer")
      */
-    private $prix;
+    private $price;
 
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $nombreVente;
+    private $sold;
 
     /**
      * @ORM\OneToOne(targetEntity="Media", cascade={"persist","remove"})
@@ -45,10 +44,10 @@ class Product
     private $image;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Categorie")
+     * @ORM\ManyToOne(targetEntity="Category")
      * @ORM\JoinColumn(name="$categorie_id", referencedColumnName="id")
      */
-    private $categorie_id;
+    private $category_id;
 
 
 
@@ -71,17 +70,17 @@ class Product
     /**
      * @return mixed
      */
-    public function getCategorieId()
+    public function getCategoryId()
     {
-        return $this->categorie_id;
+        return $this->category_id;
     }
 
     /**
-     * @param mixed $categorie_id
+     * @param mixed $category_id
      */
-    public function setCategorieId($categorie_id): void
+    public function setCategoryId($category_id): void
     {
-        $this->categorie_id = $categorie_id;
+        $this->category_id = $category_id;
     }
 
 
@@ -90,14 +89,14 @@ class Product
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getName(): ?string
     {
-        return $this->nom;
+        return $this->name;
     }
 
-    public function setNom(string $nom): self
+    public function setName(string $name): self
     {
-        $this->nom = $nom;
+        $this->name = $name;
 
         return $this;
     }
@@ -114,31 +113,29 @@ class Product
         return $this;
     }
 
-    public function getPrix(): ?int
+    public function getPrice(): ?int
     {
-        return $this->prix;
+        return $this->price;
     }
 
-    public function setPrix(int $prix): self
+    public function setPrice(int $price): self
     {
-        $this->prix = $prix;
+        $this->price = $price;
 
         return $this;
     }
 
-    public function getNombreVente(): ?int
+    public function getSold(): ?int
     {
-        return $this->nombreVente;
+        return $this->sold;
     }
 
-    public function setNombreVente(int $nombreVente): self
+    public function setSold(int $sold): self
     {
-        $this->nombreVente = $nombreVente;
+        $this->sold = $sold;
 
         return $this;
     }
-
-
 
 }
 

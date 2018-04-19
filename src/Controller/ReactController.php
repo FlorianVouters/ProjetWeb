@@ -8,6 +8,7 @@
 
 namespace App\Controller;
 use App\Entity\React;
+use App\Entity\Report;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class ReactController extends Controller
@@ -39,6 +40,17 @@ class ReactController extends Controller
         $reagit->setTypeVote($reaction);
 
         $entityManager->persist($reagit);
+        $entityManager->flush();
+    }
+
+    public function deleteReactionToActivity($react_id){
+        $repository = $this->getDoctrine()->getRepository(Report::class);
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $react = $repository->findOneBy([
+            'react_id' => $react_id,
+        ]);
+        $entityManager->remove($react);
         $entityManager->flush();
     }
 }

@@ -22,47 +22,47 @@ class Comment
     private $description;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Compte")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="compte_id", referencedColumnName="id")
      */
-    private $compte_id;
+    private $user_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Activite")
+     * @ORM\ManyToOne(targetEntity="Activity")
      * @ORM\JoinColumn(name="activite_id", referencedColumnName="id")
      */
-    private $activite_id;
+    private $activity_id;
 
     /**
      * @return mixed
      */
-    public function getActiviteId()
+    public function getActivityId()
     {
-        return $this->activite_id;
+        return $this->activity_id;
     }
 
     /**
-     * @param mixed $activite_id
+     * @param mixed $activity_id
      */
-    public function setActiviteId($activite_id): void
+    public function setActivityId($activity_id): void
     {
-        $this->activite_id = $activite_id;
+        $this->activity_id = $activity_id;
     }
 
     /**
      * @return mixed
      */
-    public function getCompteId()
+    public function getUserId()
     {
-        return $this->compte_id;
+        return $this->user_id;
     }
 
     /**
-     * @param mixed $compte_id
+     * @param mixed $user_id
      */
-    public function setCompteId($compte_id): void
+    public function setUserId($user_id): void
     {
-        $this->compte_id = $compte_id;
+        $this->user_id = $user_id;
     }
 
 

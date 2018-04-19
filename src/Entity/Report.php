@@ -19,73 +19,73 @@ class Report
     /**
      * @ORM\Column(type="text")
      */
-    private $raison;
+    private $reason;
 
     /**
-     * @ORM\OneToMany(targetEntity="Compte")
+     * @ORM\ManyToOne(targetEntity="User")
      * @ORM\JoinColumn(name="$compte_id", referencedColumnName="id")
      */
-    private $compte_id;
+    private $user_id;
 
 
     /**
-     * @ORM\ManyToOne(targetEntity="Commentaire")
+     * @ORM\ManyToOne(targetEntity="Comment")
      * @ORM\JoinColumn(name="commentaire_id", referencedColumnName="id")
      */
-    private $commentaire_id;
+    private $comment_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Activite")
+     * @ORM\ManyToOne(targetEntity="Activity")
      * @ORM\JoinColumn(name="activite_id", referencedColumnName="id")
      */
-    private $activite_id;
+    private $activity_id;
 
     /**
      * @return mixed
      */
-    public function getActiviteId()
+    public function getActivityId()
     {
-        return $this->activite_id;
+        return $this->activity_id;
     }
 
     /**
-     * @param mixed $activite_id
+     * @param mixed $activity_id
      */
-    public function setActiviteId($activite_id): void
+    public function setActivityId($activity_id): void
     {
-        $this->activite_id = $activite_id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCommentaireId()
-    {
-        return $this->commentaire_id;
-    }
-
-    /**
-     * @param mixed $commentaire_id
-     */
-    public function setCommentaireId($commentaire_id): void
-    {
-        $this->commentaire_id = $commentaire_id;
+        $this->activity_id = $activity_id;
     }
 
     /**
      * @return mixed
      */
-    public function getCompteId()
+    public function getCommentId()
     {
-        return $this->compte_id;
+        return $this->comment_id;
     }
 
     /**
-     * @param mixed $compte_id
+     * @param mixed $comment_id
      */
-    public function setCompteId($compte_id): void
+    public function setCommentId($comment_id): void
     {
-        $this->compte_id = $compte_id;
+        $this->comment_id = $comment_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+
+    /**
+     * @param mixed $user_id
+     */
+    public function setUserId($user_id): void
+    {
+        $this->user_id = $user_id;
     }
 
     public function getId()
@@ -93,14 +93,14 @@ class Report
         return $this->id;
     }
 
-    public function getRaison(): ?string
+    public function getReason(): ?string
     {
-        return $this->raison;
+        return $this->reason;
     }
 
-    public function setRaison(string $raison): self
+    public function setReason(string $reason): self
     {
-        $this->raison = $raison;
+        $this->reason = $reason;
 
         return $this;
     }
