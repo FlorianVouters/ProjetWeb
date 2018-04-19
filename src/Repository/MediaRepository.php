@@ -25,10 +25,10 @@ class MediaRepository extends ServiceEntityRepository
     /*
     public function findByExampleField($value)
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
+            ->orderBy('p.id', 'ASC')
             ->setMaxResults(10)
             ->getQuery()
             ->getResult()
@@ -39,8 +39,8 @@ class MediaRepository extends ServiceEntityRepository
     /*
     public function findOneBySomeField($value): ?Media
     {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.exampleField = :val')
             ->setParameter('val', $value)
             ->getQuery()
             ->getOneOrNullResult()
@@ -48,14 +48,4 @@ class MediaRepository extends ServiceEntityRepository
     }
     */
 
-    public function findByID($id): ?array
-    {
-        return $this->createQueryBuilder('m')
-            ->andWhere('m.id = :id')
-            ->setParameter('id', $id)
-            ->setMaxResults(1)
-            ->getQuery()
-            ->getResult()
-            ;
-    }
 }

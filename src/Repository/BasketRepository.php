@@ -2,25 +2,25 @@
 
 namespace App\Repository;
 
-use App\Entity\Product;
+use App\Entity\Basket;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * @method Product|null find($id, $lockMode = null, $lockVersion = null)
- * @method Product|null findOneBy(array $criteria, array $orderBy = null)
- * @method Product[]    findAll()
- * @method Product[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method Basket|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Basket|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Basket[]    findAll()
+ * @method Basket[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ProductRepository extends ServiceEntityRepository
+class BasketRepository extends ServiceEntityRepository
 {
     public function __construct(RegistryInterface $registry)
     {
-        parent::__construct($registry, Product::class);
+        parent::__construct($registry, Basket::class);
     }
 
 //    /**
-//     * @return Product[] Returns an array of Product objects
+//     * @return Basket[] Returns an array of Basket objects
 //     */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ProductRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Product
+    public function findOneBySomeField($value): ?Basket
     {
         return $this->createQueryBuilder('p')
             ->andWhere('p.exampleField = :val')
@@ -47,6 +47,4 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
-
-
 }

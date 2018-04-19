@@ -6,6 +6,7 @@ use App\Entity\Activity;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
+
 /**
  * @method Activity|null find($id, $lockMode = null, $lockVersion = null)
  * @method Activity|null findOneBy(array $criteria, array $orderBy = null)
@@ -47,4 +48,6 @@ class ActivityRepository extends ServiceEntityRepository
         ;
     }
     */
+
+
 }
