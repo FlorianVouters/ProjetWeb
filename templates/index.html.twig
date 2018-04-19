@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if (app.user) %}
+    <div> BIENVENUE SUR NOTRE SITE INTERNETTE</div>
+        {% if app.user.roles[0] == 'ROLE_INVITED' %}
+            <div> ATTEND QU'UN MEMBRE DU BDE ACCEPTE TA VENUE.</div>
+        {% endif %}
+    {% else %}
+    <a href="{{ path('security_login')}}"> Connexion</a><br>
+    <a href="{{ path('user_registration')}}"> Inscription</a>
+    {% endif %}
+    <?php header({{ path('admin') }}) ?>
+{% endblock %}
