@@ -1,5 +1,3 @@
-{{ dump(form) }}
-
 <form method="post" name="{{ form.vars.name }} class="{{ form_class|default('') }}" {{ form_option|default(null) }}>
 {% for i in form.children|keys %}
         {% if i != '_token' %}
