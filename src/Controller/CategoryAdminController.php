@@ -39,17 +39,6 @@ class CategoryAdminController extends Controller
             $em->persist($category);
             $em->flush();
 
-            $media = $this->getDoctrine()->getRepository(Media::class)->find($category->getImage()->getId());
-
-            var_dump($media);
-            echo __dir__.'../../web/uploads';
-            die();
-
-            $media->setName($category->getName());
-
-            $em->persist($media);
-            $em->flush();
-
             return $this->redirectToRoute('category_index');
         }
 
@@ -100,4 +89,6 @@ class CategoryAdminController extends Controller
 
         return $this->redirectToRoute('category_index');
     }
+
+
 }
