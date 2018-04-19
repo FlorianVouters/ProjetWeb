@@ -6,9 +6,7 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% if (app.user and app.user.token) %}
-            <?php header('Location: /activate')?>
-        {% endif %}
+
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
