@@ -38,6 +38,8 @@ class ActivityController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
+            $activity->setStatut(false);
+
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($activity);
@@ -99,6 +101,52 @@ class ActivityController extends Controller
             ));
         }
 
+    }
+
+    public function getActivityByID($id){
+
+        $repository = $this->getDoctrine()->getRepository(Activity::class);
+        $activite = $repository->find($id);
+        return $activite;
+    }
+    public function getActivityByVisibility($etatVisibilite){
+
+        $repository = $this->getDoctrine()->getRepository(Activity::class);
+        $activite = $repository->findBy([
+            'visibility' => $etatVisibilite
+        ]);
+        return $activite;
+    }
+
+    public function addActivity($nom, $description, $image){
+        $entityManager = $this->getDoctrine()->getManager();
+        $activity = new Activity();
+
+        $activity->setName($nom);
+        $activity->setDescription($description);
+        $activity->setImage($image);
+        $activity->setDate(null);
+        $activity->setCurrency(null);
+        $activity->setPrice( null);
+        $activity->setVisibility( true);
+        $activity->setStatut( false);
+        $entityManager->persist($activity);
+        $entityManager->flush();
+    }
+    public function setActivity($nom, $description, $image, $date, $recurrence, $prix, $visibility, $statut){
+        $entityManager = $this->getDoctrine()->getManager();
+        $activity = new Activity();
+
+        $activity->setName($nom);
+        $activity->setDescription($description);
+        $activity->setImage($image);
+        $activity->setDate($date);
+        $activity->setCurrency($recurrence);
+        $activity->setPrice( $prix);
+        $activity->setVisibility( $visibility);
+        $activity->setStatut( $statut);
+        $entityManager->persist($activity);
+        $entityManager->flush();
     }
 
 }
