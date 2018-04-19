@@ -12,6 +12,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/activity")
@@ -58,8 +60,11 @@ class ActivityController extends Controller
     /**
      * @Route("/{id}/edit", name="activity_edit", methods="GET|POST")
      */
-    public function edit(Request $request, Activity $activity): Response
+    public function edit(Request $request, Activity $activity, AuthorizationCheckerInterface $authChecker): Response
     {
+        if (false === $authChecker->isGranted('ROLE_ADMIN')) {
+            throw new AccessDeniedException('Cette page n\'existe pas!');
+        }
         $form = $this->createForm(ActivityAdminType::class, $activity);
         $form->handleRequest($request);
 

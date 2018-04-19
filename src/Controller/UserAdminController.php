@@ -42,16 +42,28 @@ class UserAdminController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            var_dump($user);
-            die();
-
-            $user->setRoles($user->getTempRoles());
+            switch ($user->getTempRoles()) {
+                case 'ROLE_USER':
+                    $user->setRoles(['ROLE_USER']);
+                    break;
+                case 'ROLE_CESI' :
+                    $user->setRoles(['ROLE_CESI']);
+                    break;
+                case 'ROLE_ADMIN' :
+                    $user->setRoles(['ROLE_ADMIN']);
+                    break;
+                case 'ROLE_INVITED' :
+                    $user->setRoles(['ROLE_INVITED']);
+                    break;
+                default:
+                    break;
+            }
             $user->setTempRoles(null);
 
 
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
+            return $this->redirectToRoute('admin_user_index', ['id' => $user->getId()]);
         }
 
         return $this->render('admin/user/edit.html.twig', [

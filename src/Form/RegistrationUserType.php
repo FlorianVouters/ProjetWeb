@@ -17,7 +17,7 @@ class RegistrationUserType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, array('label' => 'Prénom'))
-            ->add('surname', TextType::class, array('label' => 'Surnom'))
+            ->add('surname', TextType::class, array('label' => 'Nom'))
             ->add('email', EmailType::class, array('label' => 'Email'))
             ->add('password', RepeatedType::class, array(
                                 'type' => PasswordType::class,

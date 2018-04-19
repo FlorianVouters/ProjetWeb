@@ -21,12 +21,12 @@ class UserAdminType extends AbstractType
             'Administrateur'     => 'ROLE_ADMIN'
         );
         $builder
-            ->add('username', TextType::class)
-            ->add('firstname', TextType::class)
-            ->add('surname', TextType::class)
-            ->add('email', EmailType::class)
+            ->add('username', TextType::class, array("label" => "Pseudo"))
+            ->add('firstname', TextType::class, array("label" => "Prénom"))
+            ->add('surname', TextType::class, array("label" => "Nom"))
+            ->add('email', EmailType::class, array("label" => "Email"))
             ->add('temp_roles', ChoiceType::class, array(
-                'label'   => 'Choose the role',
+                'label'   => 'Choix du rôle',
                 'choices' => $permissions,
             ))
         ;
