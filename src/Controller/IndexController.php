@@ -17,6 +17,7 @@ class IndexController extends Controller
     public function index()
     {
         $session = new Session();
+        //Get User by Security Bundle
         $user = $this->get('security.token_storage')->getToken()->getUser();
         if (is_object($user) && $user->getToken()) {
             return $this->redirect('/activate');

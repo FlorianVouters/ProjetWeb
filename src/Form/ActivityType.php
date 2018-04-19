@@ -17,7 +17,7 @@ class ActivityType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('description', TextareaType::class)
-            ->add('image', MediaType::class)
+            ->add('image', MediaType::class, array("required" => false))
         ;
     }
 

@@ -35,22 +35,4 @@ class SecurityController extends AbstractController
         throw new \Exception('This should never be reached!');
     }
 
-
-
-    public function editMyAccount(): Response
-    {
-        $form = $this->createForm(AdminUserType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
-
-            return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
-        }
-
-        return $this->render('admin/user/edit.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
-    }
 }

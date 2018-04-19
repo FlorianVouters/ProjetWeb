@@ -15,18 +15,19 @@ class UserAdminType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $permissions = array(
-            'ROLE_USER'     => 'Aucun droit',
-            'ROLE_ADMIN'    => 'Consultation',
-            'ROLE_CESI'     => 'Administrateur'
+            'Aucun droit'     => 'ROLE_INVITED',
+            'Etudiant'     => 'ROLE_USER',
+            'Membre CESI'    => 'ROLE_CESI',
+            'Administrateur'     => 'ROLE_ADMIN'
         );
         $builder
             ->add('username', TextType::class)
             ->add('firstname', TextType::class)
             ->add('surname', TextType::class)
             ->add('email', EmailType::class)
-            ->add('roles', ChoiceType::class, array(
+            ->add('temp_roles', ChoiceType::class, array(
                 'label'   => 'Choose the role',
-                'choices' => array('bonjour', 'allo'),
+                'choices' => $permissions,
             ))
         ;
     }
