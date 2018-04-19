@@ -23,28 +23,6 @@ class UserAdminController extends Controller
         return $this->render('admin/user/index.html.twig', ['users' => $userRepository->findAll()]);
     }
 
-    /**
-     * @Route("/new", name="admin_user_new", methods="GET|POST")
-     */
-    public function new(Request $request): Response
-    {
-        $user = new User();
-        $form = $this->createForm(UserAdminType::class, $user);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
-
-            return $this->redirectToRoute('user_index');
-        }
-
-        return $this->render('admin/user/new.html.twig', [
-            'user' => $user,
-            'form' => $form->createView(),
-        ]);
-    }
 
     /**
      * @Route("/{id}", name="admin_user_show", methods="GET")
@@ -63,6 +41,14 @@ class UserAdminController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            var_dump($user);
+            die();
+
+            $user->setRoles($user->getTempRoles());
+            $user->setTempRoles(null);
+
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('user_edit', ['id' => $user->getId()]);
@@ -86,5 +72,39 @@ class UserAdminController extends Controller
         }
 
         return $this->redirectToRoute('user_index');
+    }
+
+
+    public function getUserByID($id){
+
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $compte = $repository->find($id);
+        return $compte;
+
+    }
+    public function getUserByEmail($adresseMail){
+
+        $repository = $this->getDoctrine()->getRepository(User::class);
+        $compte = $repository->findBy([
+            'adresseMail' => $adresseMail
+        ]);
+        return $compte;
+    }
+
+    public function getAllRegistrationsToActivity($compte_id){
+
+        $repository = $this->getDoctrine()->getRepository(Registration::class);
+        $inscription = $repository->findby([
+            'compte_id' => $compte_id,
+        ]);
+        return $inscription;
+    }
+    public function getBasket($compte_id){
+        $repository = $this->getDoctrine()->getRepository(Basket::class);
+        $panier = $repository->findOneBy([
+            'compte_id' => $compte_id,
+        ]);
+        return $panier;
+
     }
 }
