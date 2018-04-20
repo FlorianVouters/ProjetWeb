@@ -2880,16 +2880,16 @@
         },
         {
             "name": "symfony/phpunit-bridge",
-            "version": "v4.0.2",
+            "version": "v4.0.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/phpunit-bridge.git",
-                "reference": "61c84ebdce0d4c289413a222ee545f0114e60120"
+                "reference": "e82f3f46384482f2a7dab5f00c58a36b9726bde9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/61c84ebdce0d4c289413a222ee545f0114e60120",
-                "reference": "61c84ebdce0d4c289413a222ee545f0114e60120",
+                "url": "https://api.github.com/repos/symfony/phpunit-bridge/zipball/e82f3f46384482f2a7dab5f00c58a36b9726bde9",
+                "reference": "e82f3f46384482f2a7dab5f00c58a36b9726bde9",
                 "shasum": ""
             },
             "require": {
@@ -2909,6 +2909,10 @@
             "extra": {
                 "branch-alias": {
                     "dev-master": "4.0-dev"
+                },
+                "thanks": {
+                    "name": "phpunit/phpunit",
+                    "url": "https://github.com/sebastianbergmann/phpunit"
                 }
             },
             "autoload": {
@@ -2938,7 +2942,7 @@
             ],
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
-            "time": "2017-12-14T19:48:22+00:00"
+            "time": "2018-04-04T18:24:59+00:00"
         },
         {
             "name": "symfony/polyfill-intl-icu",
