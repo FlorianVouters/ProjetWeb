@@ -104,6 +104,9 @@
     "swiftmailer/swiftmailer": {
         "version": "v6.0.2"
     },
+    "symfony/asset": {
+        "version": "v4.0.8"
+    },
     "symfony/browser-kit": {
         "version": "v4.0.2"
     },
@@ -254,6 +257,9 @@
             "ref": "85834af1496735f28d831489d12ab1921a875e0d"
         }
     },
+    "symfony/serializer": {
+        "version": "v4.0.8"
+    },
     "symfony/swiftmailer-bundle": {
         "version": "2.5",
         "recipe": {
@@ -306,6 +312,15 @@
             "branch": "master",
             "version": "3.3",
             "ref": "c72d107d077f1654428edaed69415d0228c1aefe"
+        }
+    },
+    "symfony/webpack-encore-pack": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.0",
+            "ref": "0e8ef1deeaef761e1defbec0be694237660ab13a"
         }
     },
     "symfony/yaml": {
