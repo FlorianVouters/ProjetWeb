@@ -2,6 +2,8 @@
 /.idea/*
 
 
+/assets/vendor
+
 # Cache and logs (Symfony2)
 /app/cache/*
 /app/logs/*
@@ -126,3 +128,5 @@ yarn-error.log
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+*.scss
+*.svg
