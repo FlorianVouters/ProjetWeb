@@ -20,7 +20,7 @@ class TokenApiController extends Controller
 
         $tokenApi->setToken($string);
         $tokenApi->setPermission(['Basic']);
-        $tokenApi->setCompteId($compte_id);
+        $tokenApi->setUserId($compte_id);
         $entityManager->persist($tokenApi);
         $entityManager->flush();
     }

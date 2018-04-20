@@ -31,13 +31,13 @@ class ActivityController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $activity = new Activity();
 
-        $activity->setNom($nom);
+        $activity->setName($nom);
         $activity->setDescription($description);
         $activity->setImage($image);
         $activity->setDate(null);
-        $activity->setRecurrence(null);
-        $activity->setPrix( null);
-        $activity->setEtatVisibilite( true);
+        $activity->setCurrency(null);
+        $activity->setPrice( null);
+        $activity->setVisibility( true);
         $activity->setStatut( false);
         $entityManager->persist($activity);
         $entityManager->flush();
@@ -46,13 +46,13 @@ class ActivityController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $activity = new Activity();
 
-        $activity->setNom($nom);
+        $activity->setName($nom);
         $activity->setDescription($description);
         $activity->setImage($image);
         $activity->setDate($date);
-        $activity->setRecurrence($recurrence);
-        $activity->setPrix( $prix);
-        $activity->setEtatVisibilite( $visibility);
+        $activity->setCurrency($recurrence);
+        $activity->setPrice( $prix);
+        $activity->setVisibility( $visibility);
         $activity->setStatut( $statut);
         $entityManager->persist($activity);
         $entityManager->flush();

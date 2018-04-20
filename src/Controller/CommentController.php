@@ -27,8 +27,8 @@ class CommentController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $comment = new Comment();
 
-        $comment->setActiviteId($activity_id);
-        $comment->setCompteId($user_id);
+        $comment->setActivityId($activity_id);
+        $comment->setUserId($user_id);
         $comment->setDescription($description);
 
         $entityManager->persist($comment);

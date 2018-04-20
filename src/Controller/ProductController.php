@@ -16,11 +16,11 @@ class ProductController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $produit = new Product();
 
-        $produit->setNom($nom);
+        $produit->setName($nom);
         $produit->setDescription($description);
-        $produit->setPrix($prix);
-        $produit->setCategorieId($categorie);
-        $produit->setNombreVente('0');
+        $produit->setPrice($prix);
+        $produit->setCategoryId($categorie);
+        $produit->setSold('0');
 
         $entityManager->persist($produit);
         $entityManager->flush();
@@ -38,11 +38,11 @@ class ProductController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $activity = new Product();
 
-        $activity->setNom($nom);
+        $activity->setName($nom);
         $activity->setDescription($description);
-        $activity->setPrix($prix);
-        $activity->setCategorieId($categorie);
-        $activity->setNombreVente( 0);
+        $activity->setPrice($prix);
+        $activity->setCategoryId($categorie);
+        $activity->setSold( 0);
         $entityManager->persist($activity);
         $entityManager->flush();
     }

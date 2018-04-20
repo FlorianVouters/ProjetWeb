@@ -18,7 +18,7 @@ class RegistrationController extends Controller
 
         $inscrire->setCompteId($compte_id);
         $inscrire->setActiviteId($activite_id);
-        $inscrire->setTypeInscription($typeInscription);
+        $inscrire->setRegistrationType($typeInscription);
 
         $entityManager->persist($inscrire);
         $entityManager->flush();

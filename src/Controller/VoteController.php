@@ -27,8 +27,8 @@ class VoteController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $voteActivite = new Vote();
 
-        $voteActivite->setActiviteId($activity_id);
-        $voteActivite->setCompteId($compte_id);
+        $voteActivite->setActivityId($activity_id);
+        $voteActivite->setUserId($compte_id);
         $voteActivite->setVote($vote);
 
         $entityManager->persist($voteActivite);

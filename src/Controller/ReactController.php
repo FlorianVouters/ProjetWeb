@@ -26,7 +26,7 @@ class ReactController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $reagit = new React();
 
-        $reagit->setCommentaireId($commentaire_id);
+        $reagit->setCommentId($commentaire_id);
         $reagit->setTypeVote($reaction);
 
         $entityManager->persist($reagit);
@@ -36,7 +36,7 @@ class ReactController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $reagit = new React();
 
-        $reagit->setActiviteId($activite_id);
+        $reagit->setActivityId($activite_id);
         $reagit->setTypeVote($reaction);
 
         $entityManager->persist($reagit);

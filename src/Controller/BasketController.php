@@ -45,8 +45,8 @@ class BasketController extends Controller
         if ($basket == null){
             $entityManager = $this->getDoctrine()->getManager();
             $newBasket = new Basket();
-            $newBasket->setCompteId($user_id);
-            $newBasket->setProduitId($product_id);
+            $newBasket->setUserId($user_id);
+            $newBasket->setProductId($product_id);
             $entityManager->persist($newBasket);
             $entityManager->flush();
 

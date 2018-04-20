@@ -16,8 +16,8 @@ class ReportController extends Controller
         $entityManager = $this->getDoctrine()->getManager();
         $rapport = new Report();
 
-        $rapport->setRaison($raison);
-        $rapport->setCompteId($compte_id);
+        $rapport->setReason($raison);
+        $rapport->setUserId($compte_id);
         $entityManager->persist($rapport);
         $entityManager->flush();
     }
