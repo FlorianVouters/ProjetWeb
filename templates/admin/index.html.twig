@@ -1,7 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block body %}
-    Bienvenue {{ app.user.firstname }} !
-        
-{% endblock %}
 
+{% block title %}Page admin{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+
+
+        <div class="row">
+            <h1 class="col-md-6 offset-md-3 text-center"><strong>Bienvenue {{ app.user.firstname }} !</strong></h1>
+        </div>
+
+        <div class="row">
+
+            <a href="{{ path('product_index') }}" class="btn btn-brown btn-lg dark-outer-button col-xl-2 offset-xl-2 col-md-3" role="button" aria-pressed="true">Les produits</a>
+            <a href="{{ path('category_index') }}" class="btn btn-brown btn-lg dark-outer-button col-xl-2 col-md-3" role="button" aria-pressed="true">Les catégories</a>
+            <a href="{{ path('activity_index') }}" class="btn btn-brown btn-lg dark-outer-button col-xl-2 col-md-3" role="button" aria-pressed="true">Les évènements</a>
+            <a href="{{ path('admin_user_index') }}" class="btn btn-brown btn-lg dark-outer-button col-xl-2 col-md-3" role="button" aria-pressed="true">Les utilisateurs</a>
+
+        </div>
+
+
+    </div>
+
+
+{% endblock %}

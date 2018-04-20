@@ -1,46 +1,151 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Activity index{% endblock %}
+{% block title %}Activités{% endblock %}
 
 {% block body %}
-    <h1>Activity index</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Date</th>
-                <th>Currency</th>
-                <th>Price</th>
-                <th>Visibility</th>
-                <th>Statut</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="container">
+
+        <div class="row">
+            <h1 class="col-md-4 offset-md-4 text-center"><strong>EVENEMENTS</strong></h1>
+        </div>
+
         {% for activity in activities %}
-            <tr>
-                <td>{{ activity.id }}</td>
-                <td>{{ activity.name }}</td>
-                <td>{{ activity.description }}</td>
-                <td>{{ activity.date ? activity.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ activity.currency }}</td>
-                <td>{{ activity.price }}</td>
-                <td>{{ activity.visibility ? 'Yes' : 'No' }}</td>
-                <td>{{ activity.statut ? 'Yes' : 'No' }}</td>
-                <td>
-                    <a href="{{ path('activity_edit', {'id': activity.id}) }}">edit</a>
-                </td>
-            </tr>
+            <div class="row eventSeparation">
+                <div class="card text-left text-white border-dark bg-brown col-md-6 offset-md-3">
+                    <h2 class="card-header">{{ activity.name }}</h2>
+                    <img class="card-img-top" src="{{ asset(actitity.image.AssetPath) }}" alt="{{ activity.image.name }}">
+                    <div class="card-body">
+                        <p class="card-text">{{ activity.description }}</p>
+                        <div class="row">
+                            <div class="col-sm-3 offset-sm-1 text-left bg-brown" style="border: #343a40 3px solid; border-radius: 10px">
+                                Prix : {{ activity.price }}€
+                            </div>
+                            <div class="col-sm-4 offset-sm-3 text-left bg-brown" style="border: #343a40 3px solid; border-radius: 10px">
+                                Date : {{ activitiy.date|date('m-d-Y') }}
+                            </div>
+                        </div>
+                        <a href="#" class="btn btn-light col-sm-4 offset-sm-4" style="border: #343a40 3px solid; border-radius: 10px">Voir</a>
+                    </div>
+                </div>
+            </div>
         {% else %}
-            <tr>
-                <td colspan="9">no records found</td>
-            </tr>
+            <p>Aucun activité retourné</p>
         {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('activity_new') }}">Create new</a>
+
+
+
+
+        <div class="row eventSeparation">
+            <div class="card text-left text-white border-dark bg-brown col-md-6 offset-md-3">
+                <h2 class="card-header">Evenement #1</h2>
+                <img class="card-img-top" src="img/flower.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste libero qui quos reprehenderit sequi?</p>
+                    <div class="row">
+                        <div class="col-sm-3 offset-sm-1 text-left bg-brown" style="border: #343a40 3px solid; border-radius: 10px">
+                            Prix :
+                        </div>
+                        <div class="col-sm-4 offset-sm-3 text-left bg-brown" style="border: #343a40 3px solid; border-radius: 10px">
+                            Date :
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-light col-sm-4 offset-sm-4" style="border: #343a40 3px solid; border-radius: 10px">Voir</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row eventSeparation">
+            <div class="card text-left text-white border-dark bg-brown col-md-6 offset-md-3">
+                <h2 class="card-header">Evenement #2</h2>
+                <img class="card-img-top" src="img/flower.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda corporis cum eius eligendi enim esse, est exercitationem expedita minima nulla officia perspiciatis placeat, quaerat quis quod sed veritatis voluptas!</p>
+                    <div class="row">
+                        <div class="col-sm-3 offset-sm-1 text-left bg-brown" style="border: #343a40 3px solid; border-radius: 10px">
+                            Prix :
+                        </div>
+                        <div class="col-sm-4 offset-sm-3 text-left bg-brown" style="border: #343a40 3px solid; border-radius: 10px">
+                            Date :
+                        </div>
+                    </div>
+                    <a href="#" class="btn btn-light col-sm-4 offset-sm-4" style="border: #343a40 3px solid; border-radius: 10px">Voir</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="dropdown show offset-md-1">
+                <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Nombre d'évènements par page
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                    <a class="dropdown-item" href="#">5</a>
+                    <a class="dropdown-item" href="#">10</a>
+                </div>
+            </div>
+
+            <nav aria-label="Page navigation">
+                <ul class="pagination offset-md-9">
+                    <li class="page-item">
+                        <a class="page-link" href="#" tabindex="-1">Previous</a>
+                    </li>
+                    <li class="page-item disabled"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
 {% endblock %}
+
+
+
+
+{#{% block body %}#}
+    {#<h1>Activity index</h1>#}
+
+    {#<table class="table">#}
+        {#<thead>#}
+            {#<tr>#}
+                {#<th>Id</th>#}
+                {#<th>Name</th>#}
+                {#<th>Description</th>#}
+                {#<th>Date</th>#}
+                {#<th>Currency</th>#}
+                {#<th>Price</th>#}
+                {#<th>Visibility</th>#}
+                {#<th>Statut</th>#}
+                {#<th>actions</th>#}
+            {#</tr>#}
+        {#</thead>#}
+        {#<tbody>#}
+        {#{% for activity in activities %}#}
+            {#<tr>#}
+                {#<td>{{ activity.id }}</td>#}
+                {#<td>{{ activity.name }}</td>#}
+                {#<td>{{ activity.description }}</td>#}
+                {#<td>{{ activity.date ? activity.date|date('Y-m-d H:i:s') : '' }}</td>#}
+                {#<td>{{ activity.currency }}</td>#}
+                {#<td>{{ activity.price }}</td>#}
+                {#<td>{{ activity.visibility ? 'Yes' : 'No' }}</td>#}
+                {#<td>{{ activity.statut ? 'Yes' : 'No' }}</td>#}
+                {#<td>#}
+                    {#<a href="{{ path('activity_edit', {'id': activity.id}) }}">edit</a>#}
+                {#</td>#}
+            {#</tr>#}
+        {#{% else %}#}
+            {#<tr>#}
+                {#<td colspan="9">no records found</td>#}
+            {#</tr>#}
+        {#{% endfor %}#}
+        {#</tbody>#}
+    {#</table>#}
+
+    {#<a href="{{ path('activity_new') }}">Create new</a>#}
+{#{% endblock %}#}
