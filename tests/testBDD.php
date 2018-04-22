@@ -48,6 +48,6 @@ class testBDD extends TestCase
         $test->setUserId(20);
         $this->assertEquals('azerty', $test->getToken());
     }
-    
+
 }
 ?>
